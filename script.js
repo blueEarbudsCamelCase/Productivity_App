@@ -1,18 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const categorySetup = document.getElementById("categorySetup");
-    const timeTracker = document.getElementById("timeTracker");
-
+    const homeScreen = document.getElementById('homeScreen');
     // Check if categories exist in local storage
     const categories = JSON.parse(localStorage.getItem("categories")) || [];
 
     if (categories.length === 0) {
         // Show category setup screen
         categorySetup.style.display = "block";
-        timeTracker.style.display = "none";
+        homeScreen.style.display = "none";
     } else {
-        // Show time tracker screen
+        // Show home screen
         categorySetup.style.display = "none";
-        timeTracker.style.display = "block";
+        homeScreen.style.display = "block";
     }
 
     // Handle category form submission
@@ -38,24 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem("categories", JSON.stringify(categoryInputs));
 
         // Switch to time tracker screen
-        categorySetup.style.display = "none";
-        timeTracker.style.display = "block";
+        categorySetup.style.add('hidden');
+        homeScreen.style.remove('hidden');
     });
 });
-    
-    const form = document.getElementById('timeTrackerForm');
-    const activityList = document.getElementById('activityList');
-
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const activity = document.getElementById('activity').value;
-        const timeSpent = document.getElementById('timeSpent').value;
-
-        const listItem = document.createElement('li');
-        listItem.textContent = `${activity} - ${timeSpent} minutes`;
-
-        activityList.appendChild(listItem);
-
-        form.reset();
-    });
