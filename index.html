@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="homeScreen">
+        
+    </div>
+    <div id="timeTracker">
+        <h1>Time Tracker</h1>
+        <form id="timeTrackerForm">
+            <label for="activity">Activity:</label>
+            <input type="text" id="activity" name="activity" required />
+
+            <label for="timeSpent">Time Spent (minutes):</label>
+            <input type="number" id="timeSpent" name="timeSpent" required />
+
+            <button type="submit">Add</button>
+        </form>
+        <ul id="activityList"></ul>
+    </div>
+</body>
+</html>
