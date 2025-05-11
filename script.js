@@ -100,3 +100,13 @@ const today = new Date();
 if (today.getDate() === 1) {
     alert('Don’t forget to set your fitness focus for the month!');
 }
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then((reg) => console.log("Service Worker registered:", reg))
+        .catch((err) => console.log("Service Worker failed:", err));
+    });
+  }
+
