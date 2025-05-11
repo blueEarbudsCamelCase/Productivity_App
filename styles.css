@@ -8,9 +8,7 @@ text color; #49505f*/
 body {
     font-family: 'Afacad';
     background-color: #FBF5DA;
-    margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 /* Responsive styles for smaller screens */
@@ -22,7 +20,6 @@ body {
     }
 
     label, input, button {
-        width: 100%;
         margin-bottom: 10px;
     }
 }
@@ -33,13 +30,14 @@ h3,
 h4, 
 h5, 
 h6, 
-p{
+p,
+li{
     color: #49505f;
 }
 
 /* Home Screen Sections */
 #productivityScore, #fitnessFocus {
-    width: 100%;
+    color: #49505f;
     text-align: center;
     margin: 20px 0;
     padding: 10px;
@@ -48,8 +46,9 @@ p{
     border-radius: 10px;
 }
 
+/* Ensure both #sleepChart and #ministryReading take up equal height */
 #sleepChart, #ministryReading {
-    width: 40%;
+    color: #49505f;    
     display: inline-block;
     vertical-align: top;
     margin: 10px 1%;
@@ -57,6 +56,10 @@ p{
     background-color: #FDFAED;
     border: 2px solid #F9F0C8;
     border-radius: 10px;
+    flex: 1; /* Ensures both elements grow equally */
+    height: auto; /* Allows dynamic content to adjust */
+    display: flex;
+    flex-direction: column; /* Ensures content inside flows properly */
 }
 
 #ministryForm {
@@ -74,6 +77,8 @@ p{
 
 #ministryForm button {
     padding: 5px 10px;
+    color: #49505f;
+    font-family: 'Afacad';
     background-color: #F4D35E;
     border: none;
     border-radius: 5px;
@@ -103,4 +108,10 @@ p{
     background-color: #FBF5DA;
     border: 1px solid #F9F0C8;
     border-radius: 5px;
+}
+
+/* Fade-out animation */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
 }
