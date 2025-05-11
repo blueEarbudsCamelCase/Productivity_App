@@ -1,23 +1,21 @@
+/* color Palette: https://coolors.co/49505f-faf0ca-f4d35e-ee964b-f95738
+main color/ background: #fbf5da Lighter variant for buttons: #fdfaed, darker variant for outlines: #f9f0c8
+Accent colors: yellow; #f4d35e orange; #ee964b red; #f95738
+text color; #49505f*/
+
+
 /* General styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Afacad';
+    background-color: #FBF5DA;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-#timeTracker {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
 /* Responsive styles for smaller screens */
 @media (max-width: 600px) {
-    #timeTracker {
-        padding: 10px;
-    }
-
+    
     form {
         display: flex;
         flex-direction: column;
@@ -27,102 +25,82 @@ body {
         width: 100%;
         margin-bottom: 10px;
     }
-
-    ul#activityList {
-        padding: 0;
-        list-style-type: none;
-    }
 }
 
-h1 {
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6, 
+p{
+    color: #49505f;
+}
+
+/* Home Screen Sections */
+#productivityScore, #fitnessFocus {
+    width: 100%;
     text-align: center;
-    color: #444;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-input, button {
+    margin: 20px 0;
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background-color: #FDFAED;
+    border: 2px solid #F9F0C8;
+    border-radius: 10px;
 }
 
-button {
-    background-color: #5cb85c;
-    color: white;
+#sleepChart, #ministryReading {
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px 1%;
+    padding: 10px;
+    background-color: #FDFAED;
+    border: 2px solid #F9F0C8;
+    border-radius: 10px;
+}
+
+#ministryForm {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#ministryForm input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #F9F0C8;
+    border-radius: 5px;
+}
+
+#ministryForm button {
+    padding: 5px 10px;
+    background-color: #F4D35E;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #4cae4c;
+/* Placeholder text styling */
+#ministryForm input::placeholder {
+    font-family: 'Afacad';
+    color: #49505f;
 }
 
-ul {
-    list-style-type: none;
+/* Checked state for book list items */
+#bookList li.checked {
+    text-decoration: line-through;
+    color: #EE964B;
+}
+
+#bookList {
+    list-style: none;
     padding: 0;
 }
 
-li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Category setup styles */
-#categorySetup {
-    text-align: center;
-    padding: 20px;
-}
-
-#categorySetup form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-#categorySetup input {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-}
-
-#categorySetup button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* The navigation bar */
-.navbar {
-  overflow: hidden;
-  background-color: #333;
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
-}
-
-/* Links inside the navbar */
-.navbar a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Change background on mouse-over */
-.navbar a:hover {
-  background: #ddd;
-  color: black;
-}
-
-/* Main content */
-.main {
-  margin-top: 30px; /* Add a top margin to avoid content overlay */
+#bookList li {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #FBF5DA;
+    border: 1px solid #F9F0C8;
+    border-radius: 5px;
 }

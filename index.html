@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productivity</title>
+    <title>Meridith's App 😊</title>
     <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Afacad' rel='stylesheet'>
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="navbar">
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-</div>
     <div id="homeScreen">
-        <p>hello 😊</p>
+       <p id="greeting">Welcome!</p>
+       <!--I want this to be a sort of score telling you how closely you've been following your plan. maybe this section could also include a streak or maybe instead of a score it could have a streak.
+        I want this section to fill the screen left to right.-->
+<div id="productivityScore">Your Productivity Score: <span id="score">0</span></div>
+        <!--this section should have a chart showing what time I last used my phone, what time I fell asleep, what time I wolk up, and what time I turned on my phone for the first time. 
+        I want this section to fill half of the screen left to right-->
+<div id="sleepChart">Sleep Chart Placeholder</div>
+        <!--this section will have an area to add a new ministry book. it should save the date that it's added and have a checklist below that shows all the ministry books that have been added. after 5 days, if they haven't been checked off, then send a notification on the phone reminding you. 
+        I want this section to fill half of the screen left to right-->
+<div id="ministryReading">
+    <form id="ministryForm">
+        <input type="text" id="newBook" placeholder="Add a new ministry book" />
+        <button type="button" id="addBook">Add</button>
+    </form>
+    <ul id="bookList"></ul>
+</div>
+    <!--I want this to have my current fitness focus. I'll write that in at the start of each month. Make it send me a notification on the first of each month. 
+        I want this section to fill the screen left to right.-->
+<div id="fitnessFocus">Fitness Focus Placeholder</div>
     </div>
 </div>
 </html>
