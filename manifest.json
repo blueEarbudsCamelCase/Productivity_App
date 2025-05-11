@@ -1,10 +1,10 @@
 {
-  "name": "Study Period Planner",
+  "name": "Meridith's App 😊",
   "short_name": "Planner",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4f46e5",
+  "theme_color": "#faf0c3",
   "icons": [
     {
       "src": "icon-192.png",
