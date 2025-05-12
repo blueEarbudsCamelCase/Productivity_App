@@ -1,7 +1,7 @@
 {
   "name": "Meridith's App 😊",
   "short_name": "Planner",
-  "start_url": ".",
+  "start_url": "./?v=2",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#faf0c3",
