@@ -32,22 +32,24 @@ h5,
 h6, 
 p,
 li{
+    font-family: 'Afacad';
     color: #49505f;
 }
 
-/* Home Screen Sections */
-#productivityScore, #fitnessFocus, #sleepChart, #ministryReading {
-    color: #49505f;
-    text-align: center;
-    padding: 10px;
-    background-color: #FDFAED;
-    border: 2px solid #F9F0C8;
-    border-radius: 10px;    
+#sleepChart, #ministryReading, #productivityScore, #fitnessFocus {
+    color: #49505f;    
     display: inline-block;
     vertical-align: top;
     margin: 10px 1%;
+    padding: 10px;
+    background-color: #FDFAED;
+    border: 2px solid #F9F0C8;
+    border-radius: 10px;
+    flex: 1; /* Ensures both elements grow equally */
     height: auto; /* Allows dynamic content to adjust */
- }
+    display: flex;
+    flex-direction: column; /* Ensures content inside flows properly */
+}
 
 #ministryForm {
     display: flex;
@@ -129,7 +131,7 @@ li{
     color: #49505f;
     padding: 5px;
     border: 1px solid #F9F0C8;
-    border-radius: 10px;
+    border-radius: 5px;
 } 
 
 #fitnessForm input::placeholder {
@@ -143,6 +145,6 @@ li{
     font-family: 'Afacad';
     background-color: #F4D35E;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
 }
