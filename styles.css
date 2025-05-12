@@ -32,11 +32,13 @@ h5,
 h6, 
 p,
 li{
+    font-size: large;
     font-family: 'Afacad';
     color: #49505f;
 }
 
 #sleepChart, #ministryReading, #productivityScore, #fitnessFocus {
+    text-align: center;
     color: #49505f;    
     display: inline-block;
     vertical-align: top;
