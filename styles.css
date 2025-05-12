@@ -4,7 +4,7 @@ Accent colors: yellow; #f4d35e orange; #ee964b red; #f95738
 text color; #49505f*/
 
 
-/* General styles */
+/* General styles */ 
 body {
     font-family: 'Afacad';
     background-color: #FBF5DA;
@@ -114,4 +114,39 @@ li{
 .fade-out {
     opacity: 0;
     transition: opacity 0.25s ease-out;
+}
+
+/* Fitness Focus Section */
+#fitnessFocus {
+    color: #49505f;
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #FDFAED;
+    border: 2px solid #F9F0C8;
+    border-radius: 10px;
+}
+
+#fitnessForm {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+#fitnessForm input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #F9F0C8;
+    border-radius: 5px;
+}
+
+#fitnessForm button {
+    padding: 5px 10px;
+    color: #49505f;
+    font-family: 'Afacad';
+    background-color: #F4D35E;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }

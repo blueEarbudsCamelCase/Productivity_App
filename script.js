@@ -1,10 +1,14 @@
 //all the getelementbyid's 
+const greeting = document.getElementById('greeting');
 const homeScreen = document.getElementById('homeScreen');
 const ministryForm = document.getElementById('ministryForm');
 const newBookInput = document.getElementById('newBook');
 const bookList = document.getElementById('bookList');
-const greeting = document.getElementById('greeting');
 const addBook = document.getElementById('addBook');
+const fitnessFocusElement = document.getElementById('currentFocus');
+const fitnessForm = document.getElementById('fitnessForm');
+const newFocusInput = document.getElementById('newFocus');
+const setFocusButton = document.getElementById('setFocus');
 
 //functions
 
@@ -94,6 +98,18 @@ function updateBookInLocalStorage(name, date, checked) {
     }
 }
 
+const savedFocus = localStorage.getItem('fitnessFocus') || 'None';
+fitnessFocusElement.textContent = savedFocus;
+
+// Set a new fitness focus
+setFocusButton.addEventListener('click', () => {
+    const newFocus = newFocusInput.value.trim();
+    if (newFocus) {
+        fitnessFocusElement.textContent = newFocus;
+        localStorage.setItem('fitnessFocus', newFocus);
+        newFocusInput.value = '';
+    }
+});
 
 // Fitness Focus Notification (Placeholder)
 const today = new Date();
