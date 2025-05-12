@@ -39,8 +39,7 @@ li{
 #sleepChart, #ministryReading, #productivityScore, #fitnessFocus {
     text-align: center;
     color: #49505f;    
-    display: inline-block;
-    vertical-align: top;
+    display: block;
     margin: 10px 1%;
     padding: 10px;
     background-color: #FDFAED;

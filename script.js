@@ -98,8 +98,11 @@ function updateBookInLocalStorage(name, date, checked) {
     }
 }
 
-const savedFocus = localStorage.getItem('fitnessFocus') || 'None';
-fitnessFocusElement.textContent = savedFocus;
+// Load the current fitness focus from localStorage on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedFocus = localStorage.getItem('fitnessFocus') || 'None';
+    fitnessFocusElement.textContent = savedFocus;
+});
 
 // Set a new fitness focus
 setFocusButton.addEventListener('click', () => {
@@ -108,6 +111,8 @@ setFocusButton.addEventListener('click', () => {
         fitnessFocusElement.textContent = newFocus;
         localStorage.setItem('fitnessFocus', newFocus);
         newFocusInput.value = '';
+    } else {
+        console.log('Error: No focus set');
     }
 });
 
