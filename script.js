@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Set a new fitness focus
 setFocusButton.addEventListener('click', () => {
     const newFocus = newFocusInput.value.trim();
+    console.log('New Focus:', newFocus); // Debugging: Log the input value
     if (newFocus) {
         fitnessFocusElement.textContent = newFocus;
         localStorage.setItem('fitnessFocus', newFocus);
@@ -116,7 +117,7 @@ setFocusButton.addEventListener('click', () => {
     }
 });
 
-// Fitness Focus Notification (Placeholder)
+// Fitness Focus Notification 
 const today = new Date();
 if (today.getDate() === 1) {
     alert('Don’t forget to set your fitness focus for the month!');
