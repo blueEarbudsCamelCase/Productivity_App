@@ -165,9 +165,13 @@ li{
 }
 
 #timerForm input {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
+    padding: 5px 10px;
+    color: #49505f;
+    font-family: 'Afacad';
+    background-color: #F4D35E;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #timerDisplay {
@@ -176,9 +180,19 @@ li{
 }
 
 #markDone {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
+    padding: 5px 10px;
+    color: #49505f;
+    font-family: 'Afacad';
+    background-color: #F4D35E;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#startTimer {
+    padding: 5px 10px;
+    color: #49505f;
+    font-family: 'Afacad';
     background-color: #F4D35E;
     border: none;
     border-radius: 5px;
