@@ -11,6 +11,10 @@ body {
     padding: 0;
 }
 
+#timerScreen {
+    visibility: hidden;
+}
+
 /* Responsive styles for smaller screens */
 @media (max-width: 600px) {
     
