@@ -11,6 +11,10 @@ body {
     padding: 0;
 }
 
+.header, .top-bar {
+  background-color: #00f;
+}
+
 /* Responsive styles for smaller screens */
 @media (max-width: 600px) {
     
