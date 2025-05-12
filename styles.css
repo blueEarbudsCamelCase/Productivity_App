@@ -11,10 +11,6 @@ body {
     padding: 0;
 }
 
-#timerScreen {
-    visibility: hidden;
-}
-
 /* Responsive styles for smaller screens */
 @media (max-width: 600px) {
     
@@ -201,4 +197,27 @@ li{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+/* Hide inactive screens */
+#homeScreen,
+#timerScreen {
+    display: none;
+}
+
+#homeScreen.active,
+#timerScreen.active {
+    display: block;
+}
+
+/* Small button styling */
+#openTimerScreen {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #F4D35E;
+    color: #49505f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
 }
