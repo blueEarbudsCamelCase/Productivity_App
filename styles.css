@@ -148,3 +148,39 @@ li{
     border-radius: 5px;
     cursor: pointer;
 }
+
+/* TIMER CSS */
+#timerScreen {
+    text-align: center;
+    padding: 20px;
+}
+
+#timerForm {
+    margin-bottom: 20px;
+}
+
+#timerForm label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+#timerForm input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#timerDisplay {
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+#markDone {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #F4D35E;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -40,8 +40,38 @@
         <button type="button" id="setFocus">Set Focus</button>
     </form>
 </div>
-    </div>
 </div>
+
+<div id="timerScreen">
+        <h1>Interval Timer</h1>
+        <form id="timerForm">
+            <label for="prepTime">Preparation Time (seconds):</label>
+            <input type="number" id="prepTime" min="0" value="10">
+
+            <label for="sets">Number of Sets:</label>
+            <input type="number" id="sets" min="1" value="3">
+
+            <label for="activeTime">Active Time (seconds):</label>
+            <input type="number" id="activeTime" min="0" value="30">
+
+            <label for="restTime">Rest Time (seconds):</label>
+            <input type="number" id="restTime" min="0" value="15">
+
+            <label>
+                <input type="checkbox" id="manualMode"> Manual Mode (Mark sets as done)
+            </label>
+
+            <button type="button" id="startTimer">Start Timer</button>
+        </form>
+
+        <div id="timerDisplay" style="display: none;">
+            <h2 id="timerPhase">Preparation</h2>
+            <p id="timerCountdown">0</p>
+            <button id="markDone" style="display: none;">Mark Set Done</button>
+        </div>
+    </div>
+    <script src="timer.js" defer></script>
+    
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
