@@ -36,31 +36,18 @@ li{
 }
 
 /* Home Screen Sections */
-#productivityScore, #fitnessFocus {
+#productivityScore, #fitnessFocus, #sleepChart, #ministryReading {
     color: #49505f;
     text-align: center;
-    margin: 20px 0;
     padding: 10px;
     background-color: #FDFAED;
     border: 2px solid #F9F0C8;
-    border-radius: 10px;
-}
-
-/* Ensure both #sleepChart and #ministryReading take up equal height */
-#sleepChart, #ministryReading {
-    color: #49505f;    
+    border-radius: 10px;    
     display: inline-block;
     vertical-align: top;
     margin: 10px 1%;
-    padding: 10px;
-    background-color: #FDFAED;
-    border: 2px solid #F9F0C8;
-    border-radius: 10px;
-    flex: 1; /* Ensures both elements grow equally */
     height: auto; /* Allows dynamic content to adjust */
-    display: flex;
-    flex-direction: column; /* Ensures content inside flows properly */
-}
+ }
 
 #ministryForm {
     display: flex;
@@ -70,6 +57,8 @@ li{
 
 #ministryForm input {
     flex: 1;
+    font-family: 'Afacad';
+    color: #49505f;
     padding: 5px;
     border: 1px solid #F9F0C8;
     border-radius: 5px;
@@ -136,9 +125,16 @@ li{
 
 #fitnessForm input {
     flex: 1;
+    font-family: 'Afacad';
+    color: #49505f;
     padding: 5px;
     border: 1px solid #F9F0C8;
-    border-radius: 5px;
+    border-radius: 10px;
+} 
+
+#fitnessForm input::placeholder {
+    font-family: 'Afacad';
+    color: #49505f;
 }
 
 #fitnessForm button {
@@ -147,6 +143,6 @@ li{
     font-family: 'Afacad';
     background-color: #F4D35E;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
 }
