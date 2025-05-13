@@ -169,28 +169,17 @@ li{
 }
 
 #timerForm input {
-    padding: 5px 10px;
-    color: #49505f;
+    flex: 1;
     font-family: 'Afacad';
-    background-color: #F4D35E;
-    border: none;
+    color: #49505f;
+    padding: 5px;
+    border: 1px solid #F9F0C8;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 #timerDisplay {
     font-size: 2rem;
     margin-top: 20px;
-}
-
-#markDone {
-    padding: 5px 10px;
-    color: #49505f;
-    font-family: 'Afacad';
-    background-color: #F4D35E;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 #startTimer {
