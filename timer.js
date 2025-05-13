@@ -41,6 +41,14 @@ openTimerScreenButton.addEventListener('click', () => {
 backToHomeButton.addEventListener('click', () => {
     timerScreen.style.display = 'none';
     homeScreen.style.display = 'block';
+    
+    // Clear the timer and reset the display
+    clearInterval(timerInterval);
+    timerInterval = null;
+    timerPhase.textContent = '';
+    timerCountdown.textContent = '';
+    timerDisplay.style.display = 'none';
+    timerForm.style.display = 'block';
 });
 
 async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode) {
