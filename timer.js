@@ -29,14 +29,14 @@ startTimerButton.addEventListener('click', () => {
 
 // Show the timer screen and hide the home screen
 openTimerScreenButton.addEventListener('click', () => {
-    homeScreen.style.display = 'none';
-    timerScreen.style.display = 'block';
+    homeScreen.classList.add('hidden');
+    timerScreen.classList.remove('hidden');
 });
 
 // Show the home screen and hide the timer screen
 backToHomeButton.addEventListener('click', () => {
-    timerScreen.style.display = 'none';
-    homeScreen.style.display = 'block';
+    timerScreen.classList.add('hidden');
+    homeScreen.classList.remove('hidden');
 });
 
 async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode) {

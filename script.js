@@ -120,5 +120,7 @@ setFocusButton.addEventListener('click', () => {
 // Fitness Focus Notification 
 const today = new Date();
 if (today.getDate() === 1) {
-    alert('Don’t forget to set your fitness focus for the month!');
+        alert('Don’t forget to set your fitness focus for the month!');
 }
+
+

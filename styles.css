@@ -12,7 +12,7 @@ body {
 }
 
 .header, .top-bar {
-  background-color: #fbf5da;
+  background-color: #fbf5da;    
 }
 
 /* Responsive styles for smaller screens */
@@ -203,6 +203,7 @@ li{
     cursor: pointer;
 }
 
+/* Small button styling */
 #openTimerScreen {
     padding: 5px 10px;
     color: #49505f;
