@@ -12,7 +12,7 @@ body {
 }
 
 .header, .top-bar {
-  background-color: #00f;
+  background-color: #fbf5da;
 }
 
 /* Responsive styles for smaller screens */
@@ -203,25 +203,12 @@ li{
     cursor: pointer;
 }
 
-/* Hide inactive screens */
-#homeScreen,
-#timerScreen {
-    display: none;
-}
-
-#homeScreen.active,
-#timerScreen.active {
-    display: block;
-}
-
-/* Small button styling */
 #openTimerScreen {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #F4D35E;
+    padding: 5px 10px;
     color: #49505f;
+    font-family: 'Afacad';
+    background-color: #F4D35E;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 10px 0;
 }
