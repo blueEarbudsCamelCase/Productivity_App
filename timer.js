@@ -78,23 +78,35 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
         timerCountdown.textContent = timeLeft;
     }
 
-function nextPhase() {
-    if (phase === 'prep') {
-        phase = 'active';
-        timeLeft = manualMode ? 0 : activeTime;
-        currentSet++;
-    } else if (phase === 'active' || phase === 'rest') {
-        if (currentSet < sets) {
-            phase = phase === 'active' ? 'rest' : 'active';
-            timeLeft = phase === 'active' ? (manualMode ? 0 : activeTime) : restTime;
-            if (phase === 'active') currentSet++;
-        } else {
-            endTimer();
+    function nextPhase() {
+        if (phase === 'prep') {
+            phase = 'active';
+            timeLeft = manualMode ? 0 : activeTime;
+            currentSet++;
+        } else if (phase === 'active') {
+            if (manualMode) {
+                if (currentSet < sets) {
+                    phase = 'rest';
+                    timeLeft = restTime;
+                } else {
+                    endTimer();
+                }
+            } else {
+                if (currentSet < sets) {
+                    phase = 'rest';
+                    timeLeft = restTime;
+                } else {
+                    endTimer();
+                }
+            }
+        } else if (phase === 'rest') {
+            phase = 'active';
+            timeLeft = manualMode ? 0 : activeTime;
+            currentSet++;
         }
+        playSound();
+        updateTimerDisplay();
     }
-    playSound();
-    updateTimerDisplay();
-}
 
     function endTimer() {
         clearInterval(timerInterval);
