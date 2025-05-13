@@ -158,7 +158,18 @@ li{
 }
 
 #timerForm {
-    margin-bottom: 20px;
+    text-align: center;
+    color: #49505f;    
+    display: block;
+    margin: 10px 1%;
+    padding: 10px;
+    background-color: #FDFAED;
+    border: 2px solid #F9F0C8;
+    border-radius: 10px;
+    flex: 1; /* Ensures both elements grow equally */
+    height: auto; /* Allows dynamic content to adjust */
+    display: flex;
+    flex-direction: column; /* Ensures content inside flows properly */
 }
 
 #timerForm label {
