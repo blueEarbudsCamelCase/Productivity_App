@@ -122,18 +122,16 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
             updateTimerDisplay();
         }, 1000);
     } else {
-        markDoneButton.style.display = 'block';
-        // Manual mode: Use the "Mark Set Done" button to transition phases
-        markDoneButton.addEventListener('click', () => {
+        const markDoneHandler = () => {
             if (phase === 'active' || phase === 'prep' || phase === 'rest') {
                 nextPhase();
             }
-        });
-    }
+            // Remove the event listener after the timer ends
+            if (phase === 'done') {
+                markDoneButton.removeEventListener('click', markDoneHandler);
+            }
+        };
 
-    markDoneButton.addEventListener('click', () => {
-        if (phase === 'active') {
-            nextPhase();
-        }
-    });
+        markDoneButton.addEventListener('click', markDoneHandler);
+    }
 }
