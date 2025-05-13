@@ -41,6 +41,8 @@ openTimerScreenButton.addEventListener('click', () => {
 backToHomeButton.addEventListener('click', () => {
     timerScreen.style.display = 'none';
     homeScreen.style.display = 'block';
+    if (wakeLock) wakeLock.release().then(() => (wakeLock = null));
+
      
     // Clear the timer and reset the display
     clearInterval(timerInterval);
@@ -107,13 +109,16 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
         clearInterval(timerInterval);
         timerPhase.textContent = 'Done!';
         timerCountdown.textContent = '';
+        markDoneButton.style.display = 'none'; // Hide the button when the timer ends
         if (wakeLock) wakeLock.release().then(() => (wakeLock = null));
     }
 
     updateTimerDisplay();
     playSound();
 
+            
     if (!manualMode) {
+        // Automatic mode: Countdown timer
         timerInterval = setInterval(() => {
             timeLeft--;
             if (timeLeft <= 0) {
@@ -122,6 +127,7 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
             updateTimerDisplay();
         }, 1000);
     } else {
+        // Manual mode: Use the markDoneButton to transition phases
         const markDoneHandler = () => {
             if (phase === 'active' || phase === 'prep' || phase === 'rest') {
                 nextPhase();
@@ -132,6 +138,20 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
             }
         };
 
+    // Add the event listener for the current timer instance
         markDoneButton.addEventListener('click', markDoneHandler);
+
+        // Cleanup: Remove the event listener when the timer ends
+        const cleanupHandler = () => {
+            markDoneButton.removeEventListener('click', markDoneHandler);
+            markDoneButton.style.display = 'none'; // Ensure the button is hidden
+        };
+
+        // Attach cleanup to the endTimer function
+        const originalEndTimer = endTimer;
+        endTimer = () => {
+            originalEndTimer();
+            cleanupHandler();
+        };
     }
 }
