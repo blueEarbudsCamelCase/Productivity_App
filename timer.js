@@ -66,7 +66,15 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
     let timeLeft = prepTime;
 
     timerDisplay.style.display = 'block';
-    markDoneButton.style.display = manualMode ? 'block' : 'none';
+    
+    // Reset the markDoneButton visibility for all timers
+    markDoneButton.style.display = 'none';
+
+    // Show the button only if manualMode is true for this timer
+    if (manualMode) {
+        markDoneButton.style.display = 'block';
+    }
+
 
     function playSound() {
         const audio = new Audio('beep-329314.mp3'); // Add a beep sound file in your project
@@ -131,10 +139,6 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
         const markDoneHandler = () => {
             if (phase === 'active' || phase === 'prep' || phase === 'rest') {
                 nextPhase();
-            }
-            // Remove the event listener after the timer ends
-            if (phase === 'done') {
-                markDoneButton.removeEventListener('click', markDoneHandler);
             }
         };
 
