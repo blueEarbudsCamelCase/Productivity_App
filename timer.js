@@ -78,31 +78,26 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
         timerCountdown.textContent = timeLeft;
     }
 
-    function nextPhase() {
+     function nextPhase() {
         if (phase === 'prep') {
             phase = 'active';
             timeLeft = manualMode ? 0 : activeTime;
             currentSet++;
         } else if (phase === 'active') {
-            if (manualMode) {
-                if (currentSet < sets) {
-                    phase = 'rest';
-                    timeLeft = restTime;
-                } else {
-                    endTimer();
-                }
+            if (currentSet < sets) {
+                phase = 'rest';
+                timeLeft = restTime;
             } else {
-                if (currentSet < sets) {
-                    phase = 'rest';
-                    timeLeft = restTime;
-                } else {
-                    endTimer();
-                }
+                endTimer();
             }
         } else if (phase === 'rest') {
-            phase = 'active';
-            timeLeft = manualMode ? 0 : activeTime;
-            currentSet++;
+            if (currentSet < sets) {
+                phase = 'active';
+                timeLeft = manualMode ? 0 : activeTime;
+                currentSet++;
+            } else {
+                endTimer();
+            }
         }
         playSound();
         updateTimerDisplay();
@@ -126,6 +121,13 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
             }
             updateTimerDisplay();
         }, 1000);
+    } else {
+        // Manual mode: Use the "Mark Set Done" button to transition phases
+        markDoneButton.addEventListener('click', () => {
+            if (phase === 'active' || phase === 'prep' || phase === 'rest') {
+                nextPhase();
+            }
+        });
     }
 
     markDoneButton.addEventListener('click', () => {
