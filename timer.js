@@ -30,7 +30,7 @@ startTimerButton.addEventListener('click', () => {
 // Show the timer screen and hide the home screen
 openTimerScreenButton.addEventListener('click', () => {
     homeScreen.style.display = 'none';
-    timerDisplay.style.display = 'block';
+    timerScreen.style.display = 'block';
 });
 
 // Show the home screen and hide the timer screen
