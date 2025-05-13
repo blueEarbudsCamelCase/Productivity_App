@@ -70,6 +70,11 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
     // Reset the markDoneButton visibility for all timers
     markDoneButton.style.display = 'none';
 
+    const oldHandler = markDoneButton.getAttribute('data-handler');
+    if (oldHandler) {
+        markDoneButton.removeEventListener('click', window[oldHandler]);
+        markDoneButton.removeAttribute('data-handler');
+    }
     // Show the button only if manualMode is true for this timer
     if (manualMode) {
         markDoneButton.style.display = 'block';
@@ -142,13 +147,17 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
             }
         };
 
-    // Add the event listener for the current timer instance
+        // Add the event listener for the current timer instance
+        const handlerName = `markDoneHandler_${Date.now()}`; // Unique handler name
+        window[handlerName] = markDoneHandler; // Store the handler globally
+        markDoneButton.setAttribute('data-handler', handlerName);
         markDoneButton.addEventListener('click', markDoneHandler);
 
         // Cleanup: Remove the event listener when the timer ends
         const cleanupHandler = () => {
             markDoneButton.removeEventListener('click', markDoneHandler);
             markDoneButton.style.display = 'none'; // Ensure the button is hidden
+            delete window[handlerName]; // Remove the global reference
         };
 
         // Attach cleanup to the endTimer function
