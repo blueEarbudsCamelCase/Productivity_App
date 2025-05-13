@@ -19,28 +19,24 @@ const backToHomeButton = document.getElementById('backToHome');
 
 startTimerButton.addEventListener('click', () => {
     const prepTime = parseInt(prepTimeInput.value, 10);
-    const sets = parseInt(setsInput.value, 10);
+    const sets = parseInt(setsInput.value, 10) || 0;
     const activeTime = parseInt(activeTimeInput.value, 10);
     const restTime = parseInt(restTimeInput.value, 10);
-    const manualMode = manualModeCheckbox.checked;
+    const manualMode = activeTime === 0;
 
     startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode);
 });
 
+// Show the timer screen and hide the home screen
 openTimerScreenButton.addEventListener('click', () => {
-    homeScreen.classList.add('hidden');
-    timerScreen.classList.remove('hidden');
+    homeScreen.style.display = 'none';
+    timerScreen.style.display = 'block';
 });
 
+// Show the home screen and hide the timer screen
 backToHomeButton.addEventListener('click', () => {
-    if (wakeLock) {
-        wakeLock.release().then(() => (wakeLock = null));
-    }
-    clearInterval(timerInterval);
-    timerDisplay.style.display = 'none';
-    markDoneButton.style.display = 'none';
-    homeScreen.classList.remove('hidden');
-    timerScreen.classList.add('hidden');
+    timerScreen.style.display = 'none';
+    homeScreen.style.display = 'block';
 });
 
 async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode) {
