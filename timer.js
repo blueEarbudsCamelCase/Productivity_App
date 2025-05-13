@@ -16,6 +16,7 @@ const markDoneButton = document.getElementById('markDone');
 const timerScreen = document.getElementById('timerScreen');
 const openTimerScreenButton = document.getElementById('openTimerScreen');
 const backToHomeButton = document.getElementById('backToHome');
+const timerForm = document.getElementById('timerForm');
 
 startTimerButton.addEventListener('click', () => {
     const prepTime = parseInt(prepTimeInput.value, 10);
@@ -23,6 +24,9 @@ startTimerButton.addEventListener('click', () => {
     const activeTime = parseInt(activeTimeInput.value, 10);
     const restTime = parseInt(restTimeInput.value, 10);
     const manualMode = activeTime === 0;
+
+    timerForm.style.display = 'none';
+    timerDisplay.style.display = 'block';  
 
     startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode);
 });
