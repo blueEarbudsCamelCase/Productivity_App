@@ -41,7 +41,7 @@ openTimerScreenButton.addEventListener('click', () => {
 backToHomeButton.addEventListener('click', () => {
     timerScreen.style.display = 'none';
     homeScreen.style.display = 'block';
-    
+     
     // Clear the timer and reset the display
     clearInterval(timerInterval);
     timerInterval = null;
@@ -122,6 +122,7 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
             updateTimerDisplay();
         }, 1000);
     } else {
+        markDoneButton.style.display = 'block';
         // Manual mode: Use the "Mark Set Done" button to transition phases
         markDoneButton.addEventListener('click', () => {
             if (phase === 'active' || phase === 'prep' || phase === 'rest') {
