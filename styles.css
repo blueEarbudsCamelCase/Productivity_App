@@ -202,3 +202,13 @@ li{
     border-radius: 5px;
     cursor: pointer;
 }
+
+#backToScreen {
+    padding: 5px 10px;
+    color: #49505f;
+    font-family: 'Afacad';
+    background-color: #F4D35E;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
