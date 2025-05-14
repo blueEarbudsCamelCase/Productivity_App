@@ -93,78 +93,59 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
         timerCountdown.textContent = timeLeft;
     }
 
-     function nextPhase() {
-        if (phase === 'prep') {
+function nextPhase() {
+    if (phase === 'prep') {
+        phase = 'active';
+        timeLeft = manualMode ? 0 : activeTime;
+        currentSet++;
+        markDoneButton.style.display = 'block'; // Show the button at the end of prep
+    } else if (phase === 'active') {
+        if (currentSet < sets) {
+            phase = 'rest';
+            timeLeft = restTime;
+        } else {
+            endTimer();
+        }
+    } else if (phase === 'rest') {
+        if (currentSet < sets) {
             phase = 'active';
             timeLeft = manualMode ? 0 : activeTime;
             currentSet++;
-        } else if (phase === 'active') {
-            if (currentSet < sets) {
-                phase = 'rest';
-                timeLeft = restTime;
-            } else {
-                endTimer();
-            }
-        } else if (phase === 'rest') {
-            if (currentSet < sets) {
-                phase = 'active';
-                timeLeft = manualMode ? 0 : activeTime;
-                currentSet++;
-            } else {
-                endTimer();
-            }
+            markDoneButton.style.display = 'block'; // Show the button at the end of rest
+        } else {
+            endTimer();
         }
-        playSound();
-        updateTimerDisplay();
     }
-
-    function endTimer() {
-        clearInterval(timerInterval);
-        timerPhase.textContent = 'Done!';
-        timerCountdown.textContent = '';
-        markDoneButton.style.display = 'none'; // Hide the button when the timer ends
-        if (wakeLock) wakeLock.release().then(() => (wakeLock = null));
-    }
-
-    updateTimerDisplay();
     playSound();
-
-            
-    if (!manualMode) {
-        // Automatic mode: Countdown timer
-        timerInterval = setInterval(() => {
-            timeLeft--;
-            if (timeLeft <= 0) {
-                nextPhase();
-            }
-            updateTimerDisplay();
-        }, 1000);
-    } else {
-        // Manual mode: Use the markDoneButton to transition phases
-        const markDoneHandler = () => {
-            if (phase === 'active' || phase === 'prep' || phase === 'rest') {
-                nextPhase();
-            }
-        };
-
-        // Add the event listener for the current timer instance
-        const handlerName = `markDoneHandler_${Date.now()}`; // Unique handler name
-        window[handlerName] = markDoneHandler; // Store the handler globally
-        markDoneButton.setAttribute('data-handler', handlerName);
-        markDoneButton.addEventListener('click', markDoneHandler);
-
-        // Cleanup: Remove the event listener when the timer ends
-        const cleanupHandler = () => {
-            markDoneButton.removeEventListener('click', markDoneHandler);
-            markDoneButton.style.display = 'none'; // Ensure the button is hidden
-            delete window[handlerName]; // Remove the global reference
-        };
-
-        // Attach cleanup to the endTimer function
-        const originalEndTimer = endTimer;
-        endTimer = () => {
-            originalEndTimer();
-            cleanupHandler();
-        };
-    }
+    updateTimerDisplay();
 }
+
+if (manualMode) {
+    // Manual mode: Use the markDoneButton to transition phases
+    const markDoneHandler = () => {
+        if (phase === 'prep' || phase === 'rest') {
+            markDoneButton.style.display = 'none'; // Hide the button when clicked
+            nextPhase();
+        }
+    };
+
+    // Add the event listener for the current timer instance
+    const handlerName = `markDoneHandler_${Date.now()}`; // Unique handler name
+    window[handlerName] = markDoneHandler; // Store the handler globally
+    markDoneButton.setAttribute('data-handler', handlerName);
+    markDoneButton.addEventListener('click', markDoneHandler);
+
+    // Cleanup: Remove the event listener when the timer ends
+    const cleanupHandler = () => {
+        markDoneButton.removeEventListener('click', markDoneHandler);
+        markDoneButton.style.display = 'none'; // Ensure the button is hidden
+        delete window[handlerName]; // Remove the global reference
+    };
+
+    // Attach cleanup to the endTimer function
+    const originalEndTimer = endTimer;
+    endTimer = () => {
+        originalEndTimer();
+        cleanupHandler();
+    };
+} 
