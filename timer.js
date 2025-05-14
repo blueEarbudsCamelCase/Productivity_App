@@ -109,6 +109,7 @@ function nextPhase() {
         phase = 'active';
         timeLeft = manualMode ? 0 : activeTime;
         currentSet++;
+        markDoneButton.style.display = 'block'; // Show the button at the end of prep
     } else if (phase === 'active') {
         if (currentSet < sets) {
             phase = 'rest';
@@ -121,6 +122,7 @@ function nextPhase() {
             phase = 'active';
             timeLeft = manualMode ? 0 : activeTime;
             currentSet++;
+            markDoneButton.style.display = 'block'; // Show the button at the end of rest
         } else {
             endTimer();
         }
