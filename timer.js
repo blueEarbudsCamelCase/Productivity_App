@@ -116,8 +116,10 @@ function nextPhase() {
             endTimer();
         }
     }
+
     playSound();
     updateTimerDisplay();
+}
 }
 
 if (manualMode) {
@@ -133,14 +135,10 @@ if (manualMode) {
     const handlerName = `markDoneHandler_${Date.now()}`; // Unique handler name
     window[handlerName] = markDoneHandler; // Store the handler globally
     markDoneButton.setAttribute('data-handler', handlerName);
-    markDoneButton.addEventListener('click', markDoneHandler);
-
-    // Cleanup: Remove the event listener when the timer ends
-    const cleanupHandler = () => {
-        markDoneButton.removeEventListener('click', markDoneHandler);
-        markDoneButton.style.display = 'none'; // Ensure the button is hidden
-        delete window[handlerName]; // Remove the global reference
-    };
+    markDoneButton.addEventListener('click', () => {
+        markDoneButton.style.display = 'none'; // Hide the button when clicked
+        markDoneHandler();
+    });
 
     // Attach cleanup to the endTimer function
     const originalEndTimer = endTimer;
