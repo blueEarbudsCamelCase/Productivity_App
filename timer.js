@@ -55,6 +55,15 @@ backToHomeButton.addEventListener('click', () => {
     timerForm.style.display = 'block';
 });
 
+    // Add event listener for the markDoneButton
+    markDoneButton.addEventListener('click', () => {
+        if (manualMode && phase === 'active') {
+            markDoneButton.style.display = 'none';
+            timeLeft = 0; // Mark as done
+            nextPhase();
+        }
+    });
+
 async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode) {
     // Request Wake Lock to keep the screen on
     try {
@@ -141,18 +150,8 @@ function nextPhase() {
         }else if (timeLeft > 0) {
             timeLeft--;
             updateTimerDisplay();
-            markDoneButton.style.display = 'none';
         } else {
-            markDoneButton.style.display = 'none';
             nextPhase();
         }
     }, 1000);
-
-    // Add event listener for the markDoneButton
-    markDoneButton.addEventListener('click', () => {
-        if (manualMode && phase === 'active') {
-            timeLeft = 0; // Mark as done
-            nextPhase();
-        }
-    });
 }
