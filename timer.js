@@ -120,7 +120,6 @@ function nextPhase() {
     playSound();
     updateTimerDisplay();
 }
-}
 
 if (manualMode) {
     // Manual mode: Use the markDoneButton to transition phases
@@ -147,3 +146,4 @@ if (manualMode) {
         cleanupHandler();
     };
 } 
+}
