@@ -18,6 +18,8 @@ const openTimerScreenButton = document.getElementById('openTimerScreen');
 const backToHomeButton = document.getElementById('backToHome');
 const timerForm = document.getElementById('timerForm');
 
+let manualMode = false; // Define manualMode in a broader scope
+
 startTimerButton.addEventListener('click', () => {
     const prepTime = parseInt(prepTimeInput.value, 10);
     const sets = parseInt(setsInput.value, 10) || 0;
@@ -122,7 +124,6 @@ function nextPhase() {
 }
 
 if (manualMode) {
-    // Manual mode: Use the markDoneButton to transition phases
     const markDoneHandler = () => {
         if (phase === 'prep' || phase === 'rest') {
             markDoneButton.style.display = 'none'; // Hide the button when clicked
@@ -130,20 +131,15 @@ if (manualMode) {
         }
     };
 
-    // Add the event listener for the current timer instance
     const handlerName = `markDoneHandler_${Date.now()}`; // Unique handler name
     window[handlerName] = markDoneHandler; // Store the handler globally
     markDoneButton.setAttribute('data-handler', handlerName);
-    markDoneButton.addEventListener('click', () => {
-        markDoneButton.style.display = 'none'; // Hide the button when clicked
-        markDoneHandler();
-    });
+    markDoneButton.addEventListener('click', markDoneHandler);
 
     // Attach cleanup to the endTimer function
     const originalEndTimer = endTimer;
     endTimer = () => {
         originalEndTimer();
-        cleanupHandler();
-    };
+        };
 } 
 }
