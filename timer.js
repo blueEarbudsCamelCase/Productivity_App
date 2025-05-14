@@ -136,12 +136,14 @@ function nextPhase() {
     // Start the timer interval
     timerInterval = setInterval(() => {
         if (manualMode && phase === 'active') {
-            // In manual mode, wait for user to mark as done
+            markDoneButton.style.display = 'block'; // Show the button in manual mode
             return;
         }else if (timeLeft > 0) {
             timeLeft--;
             updateTimerDisplay();
+            markDoneButton.style.display = 'none';
         } else {
+            markDoneButton.style.display = 'none';
             nextPhase();
         }
     }, 1000);
