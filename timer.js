@@ -122,24 +122,32 @@ function nextPhase() {
     playSound();
     updateTimerDisplay();
 }
+    function endTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        timerPhase.textContent = 'Done!';
+        timerCountdown.textContent = '';
+        if (wakeLock) wakeLock.release().then(() => (wakeLock = null));
+    }
 
-if (manualMode) {
-    const markDoneHandler = () => {
-        if (phase === 'prep' || phase === 'rest') {
-            markDoneButton.style.display = 'none'; // Hide the button when clicked
+    // Update the display immediately
+    updateTimerDisplay();
+
+    // Start the timer interval
+    timerInterval = setInterval(() => {
+        if (timeLeft > 0) {
+            timeLeft--;
+            updateTimerDisplay();
+        } else {
             nextPhase();
         }
-    };
+    }, 1000);
 
-    const handlerName = `markDoneHandler_${Date.now()}`; // Unique handler name
-    window[handlerName] = markDoneHandler; // Store the handler globally
-    markDoneButton.setAttribute('data-handler', handlerName);
-    markDoneButton.addEventListener('click', markDoneHandler);
-
-    // Attach cleanup to the endTimer function
-    const originalEndTimer = endTimer;
-    endTimer = () => {
-        originalEndTimer();
-        };
-} 
+    // Add event listener for the markDoneButton
+    markDoneButton.addEventListener('click', () => {
+        if (phase === 'active') {
+            timeLeft = 0; // Mark as done
+            nextPhase();
+        }
+    });
 }
