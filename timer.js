@@ -135,7 +135,12 @@ function nextPhase() {
 
     // Start the timer interval
     timerInterval = setInterval(() => {
-        if (timeLeft > 0) {
+        if (manualMode && phase === 'active') {
+        // Pause the timer and wait for the markDoneButton to be pressed
+        clearInterval(timerInterval); // Stop the interval
+        timerInterval = null; // Clear the reference
+        markDoneButton.style.display = 'block';
+        } if (timeLeft > 0) {
             timeLeft--;
             updateTimerDisplay();
         } else {
@@ -145,7 +150,7 @@ function nextPhase() {
 
     // Add event listener for the markDoneButton
     markDoneButton.addEventListener('click', () => {
-        if (phase === 'active') {
+        if (manualMode && phase === 'active') {
             timeLeft = 0; // Mark as done
             nextPhase();
         }
