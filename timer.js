@@ -18,7 +18,11 @@ const openTimerScreenButton = document.getElementById('openTimerScreen');
 const backToHomeButton = document.getElementById('backToHome');
 const timerForm = document.getElementById('timerForm');
 
-let manualMode = false; // Define manualMode in a broader scope
+let manualMode = false;
+let phase = 'prep';      // <-- Move to global
+let timeLeft = 0;        // <-- Move to global
+let currentSet = 0;      // <-- Move to global
+
 
 startTimerButton.addEventListener('click', () => {
     const prepTime = parseInt(prepTimeInput.value, 10);
@@ -26,6 +30,11 @@ startTimerButton.addEventListener('click', () => {
     const activeTime = parseInt(activeTimeInput.value, 10);
     const restTime = parseInt(restTimeInput.value, 10);
     manualMode = activeTime === 0; // <-- Assign to the global variable
+
+    // Set global variables
+    phase = 'prep';
+    timeLeft = prepTime;
+    currentSet = 0;
 
     timerForm.style.display = 'none';
     timerDisplay.style.display = 'block';  
@@ -59,7 +68,6 @@ backToHomeButton.addEventListener('click', () => {
     markDoneButton.addEventListener('click', () => {
         if (manualMode && phase === 'active') {
             timeLeft = 0; // Mark as done
-            nextPhase();
         }
     });
 
@@ -70,11 +78,7 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
     } catch (err) {
         console.error('Wake Lock failed:', err);
     }
-
-    let currentSet = 0;
-    let phase = 'prep'; // 'prep', 'active', 'rest'
-    let timeLeft = prepTime;
-
+    
     timerDisplay.style.display = 'block';
     
     // Reset the markDoneButton visibility for all timers
