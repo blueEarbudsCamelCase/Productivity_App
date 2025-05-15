@@ -25,7 +25,7 @@ startTimerButton.addEventListener('click', () => {
     const sets = parseInt(setsInput.value, 10) || 0;
     const activeTime = parseInt(activeTimeInput.value, 10);
     const restTime = parseInt(restTimeInput.value, 10);
-    const manualMode = activeTime === 0;
+    manualMode = activeTime === 0; // <-- Assign to the global variable
 
     timerForm.style.display = 'none';
     timerDisplay.style.display = 'block';  
