@@ -124,6 +124,7 @@ function nextPhase() {
             currentSet++;
             markDoneButton.style.display = 'block'; // Show the button at the end of rest
         } else {
+    timerCountdown.textContent = '';
             endTimer();
         }
     }
