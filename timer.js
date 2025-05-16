@@ -113,6 +113,14 @@ function nextPhase() {
     updateTimerDisplay();
 }
 
+    function endTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        timerPhase.textContent = 'Done!';
+        timerCountdown.textContent = '';
+        if (wakeLock) wakeLock.release().then(() => (wakeLock = null));
+    }
+
 async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode) {
     // Request Wake Lock to keep the screen on
     try {
