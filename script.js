@@ -39,7 +39,7 @@ addBook.addEventListener('click', () => {
         addBookToList(bookName, dateAdded, false);
         saveBookToLocalStorage(bookName, dateAdded, false);
         newBookInput.value = '';
-        ministryForm.classList.add('hidden');
+        ministryFormPopup.classList.add('hidden');
     }
 });
 
@@ -119,8 +119,8 @@ ministryForm.addEventListener('click', (e) => {
 
 // Show the ministry form when clicking on the container
 
-ministryFormPopup.addEventListener('click', () => {
-    ministryForm.classList.remove('hidden');
+ministryReading.addEventListener('click', () => {
+    ministryFormPopup.classList.remove('hidden');
     newBookInput.focus();
 });
 
