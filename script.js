@@ -1,6 +1,7 @@
 //all the getelementbyid's 
 const greeting = document.getElementById('greeting');
 const homeScreen = document.getElementById('homeScreen');
+const ministryReading = document.getElementById('ministryReading');
 const ministryForm = document.getElementById('ministryForm');
 const newBookInput = document.getElementById('newBook');
 const bookList = document.getElementById('bookList');
@@ -37,6 +38,7 @@ addBook.addEventListener('click', () => {
         addBookToList(bookName, dateAdded, false);
         saveBookToLocalStorage(bookName, dateAdded, false);
         newBookInput.value = '';
+        ministryForm.classList.add('hidden');
     }
 });
 
@@ -99,7 +101,29 @@ function updateBookInLocalStorage(name, date, checked) {
     }
 }
 
-  // Load saved focus
+// Hide the ministry form when clicking outside of it and its container
+document.addEventListener('click', (e) => {
+    if (
+        !ministryForm.contains(e.target) &&
+        !ministryReading.contains(e.target)
+    ) {
+        ministryForm.classList.add('hidden');
+    }
+});
+
+// Prevent click inside the form from bubbling up and closing it
+ministryForm.addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
+// Show the ministry form when clicking on the container
+
+ministryReading.addEventListener('click', () => {
+    ministryForm.classList.remove('hidden');
+    newBookInput.focus();
+});
+
+// Load saved focus
   const savedFocus = localStorage.getItem("fitnessFocus");
   if (savedFocus) {
     currentFocus.textContent = savedFocus;
