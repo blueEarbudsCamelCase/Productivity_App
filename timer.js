@@ -68,8 +68,6 @@ backToHomeButton.addEventListener('click', () => {
     markDoneButton.addEventListener('click', () => {
         if (manualMode && phase === 'active') {
             timeLeft = 0; // Mark the active phase as done
-            nextPhase();
-            updateTimerDisplay();
             markDoneButton.style.display = 'none'; // Hide the button after marking done
         }
     });
@@ -147,15 +145,6 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
         markDoneButton.style.display = 'block';
     }
 
-
-    function endTimer() {
-        clearInterval(timerInterval);
-        timerInterval = null;
-        timerPhase.textContent = 'Done!';
-        timerCountdown.textContent = '';
-        if (wakeLock) wakeLock.release().then(() => (wakeLock = null));
-    }
-
     // Update the display immediately
     updateTimerDisplay();
 
@@ -163,8 +152,13 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
     timerInterval = setInterval(() => {
         if (manualMode && phase === 'active') {
             markDoneButton.style.display = 'block'; // Show the button in manual mode
+            if (timeLeft > 0) {
+            // Wait for user to click "mark done"
             return;
-        }else if (timeLeft > 0) {
+        }
+        // If timeLeft is 0 (user clicked button), advance phase
+        nextPhase();
+        } else if (timeLeft > 0) {
             timeLeft--;
             updateTimerDisplay();
         } else {
