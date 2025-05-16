@@ -155,3 +155,12 @@ function nextPhase() {
         }
     }, 1000);
 }
+
+    // Add event listener for the markDoneButton
+    markDoneButton.addEventListener('click', () => {
+        if (manualMode && phase === 'active') {
+            markDoneButton.style.display = 'none';
+            timeLeft = 0; // Mark as done
+            nextPhase();
+        }
+    });
