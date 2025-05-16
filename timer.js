@@ -67,7 +67,7 @@ backToHomeButton.addEventListener('click', () => {
     // Add event listener for the markDoneButton
     markDoneButton.addEventListener('click', () => {
         if (manualMode && phase === 'active') {
-            timeLeft = 0; // Mark as done
+            nextPhase();
         }
     });
 
@@ -146,20 +146,15 @@ function nextPhase() {
     updateTimerDisplay();
 
     // Start the timer interval
-timerInterval = setInterval(() => {
-    if (manualMode && phase === 'active') {
-        markDoneButton.style.display = 'block'; // Show the button in manual mode
-        if (timeLeft > 0) {
-            // Wait for user to click "mark done"
+    timerInterval = setInterval(() => {
+        if (manualMode && phase === 'active') {
+            markDoneButton.style.display = 'block'; // Show the button in manual mode
             return;
+        }else if (timeLeft > 0) {
+            timeLeft--;
+            updateTimerDisplay();
         } else {
-            // User clicked the button, advance phase
             nextPhase();
         }
-    } else if (timeLeft > 0) {
-        timeLeft--;
-        updateTimerDisplay();
-    } else {
-        nextPhase();
-    }
-}, 1000);}
+    }, 1000);
+}
