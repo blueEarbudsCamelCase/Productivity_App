@@ -113,7 +113,7 @@ function updateBookInLocalStorage(name, date, checked) {
   });
 
   // Set new focus and hide form
-  setFocusBtn.addEventListener("click", () => {
+  setFocusButton.addEventListener("click", () => {
     const newFocus = newFocusInput.value.trim() || "None";
     currentFocus.textContent = newFocus;
     localStorage.setItem("fitnessFocus", newFocus);
