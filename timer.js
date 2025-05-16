@@ -71,30 +71,7 @@ backToHomeButton.addEventListener('click', () => {
         }
     });
 
-async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode) {
-    // Request Wake Lock to keep the screen on
-    try {
-        wakeLock = await navigator.wakeLock.request('screen');
-    } catch (err) {
-        console.error('Wake Lock failed:', err);
-    }
     
-    timerDisplay.style.display = 'block';
-    
-    // Reset the markDoneButton visibility for all timers
-    markDoneButton.style.display = 'none';
-
-    const oldHandler = markDoneButton.getAttribute('data-handler');
-    if (oldHandler) {
-        markDoneButton.removeEventListener('click', window[oldHandler]);
-        markDoneButton.removeAttribute('data-handler');
-    }
-    // Show the button only if manualMode is true for this timer
-    if (manualMode) {
-        markDoneButton.style.display = 'block';
-    }
-
-
     function playSound() {
         const audio = new Audio('beep-329314.mp3'); // Add a beep sound file in your project
         audio.play();
@@ -106,6 +83,7 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
                                  phase === 'rest' ? `Set ${currentSet} - Rest` : '';
         timerCountdown.textContent = timeLeft;
     }
+
 
 function nextPhase() {
     if (phase === 'prep') {
@@ -134,6 +112,31 @@ function nextPhase() {
     playSound();
     updateTimerDisplay();
 }
+
+async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode) {
+    // Request Wake Lock to keep the screen on
+    try {
+        wakeLock = await navigator.wakeLock.request('screen');
+    } catch (err) {
+        console.error('Wake Lock failed:', err);
+    }
+    
+    timerDisplay.style.display = 'block';
+    
+    // Reset the markDoneButton visibility for all timers
+    markDoneButton.style.display = 'none';
+
+    const oldHandler = markDoneButton.getAttribute('data-handler');
+    if (oldHandler) {
+        markDoneButton.removeEventListener('click', window[oldHandler]);
+        markDoneButton.removeAttribute('data-handler');
+    }
+    // Show the button only if manualMode is true for this timer
+    if (manualMode) {
+        markDoneButton.style.display = 'block';
+    }
+
+
     function endTimer() {
         clearInterval(timerInterval);
         timerInterval = null;
