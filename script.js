@@ -3,6 +3,7 @@ const greeting = document.getElementById('greeting');
 const homeScreen = document.getElementById('homeScreen');
 const ministryReading = document.getElementById('ministryReading');
 const ministryForm = document.getElementById('ministryForm');
+const ministryFormPopup = document.getElementById('ministryFormPopup');
 const newBookInput = document.getElementById('newBook');
 const bookList = document.getElementById('bookList');
 const addBook = document.getElementById('addBook');

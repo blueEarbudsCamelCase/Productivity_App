@@ -24,10 +24,12 @@
         <!--this section will have an area to add a new ministry book. it should save the date that it's added and have a checklist below that shows all the ministry books that have been added. after 5 days, if they haven't been checked off, then send a notification on the phone reminding you. 
         I want this section to fill half of the screen left to right-->
 <div id="ministryReading">
-    <form id="ministryForm" class = 'hidden'>
-        <input type="text" id="newBook" placeholder="Add a new ministry book" />
-        <button type="button" id="addBook">Add</button>
-    </form>
+    <div id = 'ministryFormPopup' class = 'hidden'>  
+        <form id="ministryForm" class = 'hidden'>
+            <input type="text" id="newBook" placeholder="Add a new ministry book" />
+            <button type="button" id="addBook">Add</button>
+        </form>
+    </div>
     <ul id="bookList"></ul>
 </div>
 
