@@ -18,23 +18,14 @@ const openTimerScreenButton = document.getElementById('openTimerScreen');
 const backToHomeButton = document.getElementById('backToHome');
 const timerForm = document.getElementById('timerForm');
 
-let manualMode = false;
-let phase = 'prep';      // <-- Move to global
-let timeLeft = 0;        // <-- Move to global
-let currentSet = 0;      // <-- Move to global
-
+let manualMode = false; // Define manualMode in a broader scope
 
 startTimerButton.addEventListener('click', () => {
     const prepTime = parseInt(prepTimeInput.value, 10);
     const sets = parseInt(setsInput.value, 10) || 0;
     const activeTime = parseInt(activeTimeInput.value, 10);
     const restTime = parseInt(restTimeInput.value, 10);
-    manualMode = activeTime === 0; // <-- Assign to the global variable
-
-    // Set global variables
-    phase = 'prep';
-    timeLeft = prepTime;
-    currentSet = 0;
+    const manualMode = activeTime === 0;
 
     timerForm.style.display = 'none';
     timerDisplay.style.display = 'block';  
@@ -67,12 +58,40 @@ backToHomeButton.addEventListener('click', () => {
     // Add event listener for the markDoneButton
     markDoneButton.addEventListener('click', () => {
         if (manualMode && phase === 'active') {
-            timeLeft = 0; // Mark the active phase as done
-            markDoneButton.style.display = 'none'; // Hide the button after marking done
+            markDoneButton.style.display = 'none';
+            timeLeft = 0; // Mark as done
+            nextPhase();
         }
     });
 
+async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode) {
+    // Request Wake Lock to keep the screen on
+    try {
+        wakeLock = await navigator.wakeLock.request('screen');
+    } catch (err) {
+        console.error('Wake Lock failed:', err);
+    }
+
+    let currentSet = 0;
+    let phase = 'prep'; // 'prep', 'active', 'rest'
+    let timeLeft = prepTime;
+
+    timerDisplay.style.display = 'block';
     
+    // Reset the markDoneButton visibility for all timers
+    markDoneButton.style.display = 'none';
+
+    const oldHandler = markDoneButton.getAttribute('data-handler');
+    if (oldHandler) {
+        markDoneButton.removeEventListener('click', window[oldHandler]);
+        markDoneButton.removeAttribute('data-handler');
+    }
+    // Show the button only if manualMode is true for this timer
+    if (manualMode) {
+        markDoneButton.style.display = 'block';
+    }
+
+
     function playSound() {
         const audio = new Audio('beep-329314.mp3'); // Add a beep sound file in your project
         audio.play();
@@ -84,7 +103,6 @@ backToHomeButton.addEventListener('click', () => {
                                  phase === 'rest' ? `Set ${currentSet} - Rest` : '';
         timerCountdown.textContent = timeLeft;
     }
-
 
 function nextPhase() {
     if (phase === 'prep') {
@@ -113,36 +131,12 @@ function nextPhase() {
     playSound();
     updateTimerDisplay();
 }
-
     function endTimer() {
         clearInterval(timerInterval);
         timerInterval = null;
         timerPhase.textContent = 'Done!';
         timerCountdown.textContent = '';
         if (wakeLock) wakeLock.release().then(() => (wakeLock = null));
-    }
-
-async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMode) {
-    // Request Wake Lock to keep the screen on
-    try {
-        wakeLock = await navigator.wakeLock.request('screen');
-    } catch (err) {
-        console.error('Wake Lock failed:', err);
-    }
-    
-    timerDisplay.style.display = 'block';
-    
-    // Reset the markDoneButton visibility for all timers
-    markDoneButton.style.display = 'none';
-
-    const oldHandler = markDoneButton.getAttribute('data-handler');
-    if (oldHandler) {
-        markDoneButton.removeEventListener('click', window[oldHandler]);
-        markDoneButton.removeAttribute('data-handler');
-    }
-    // Show the button only if manualMode is true for this timer
-    if (manualMode) {
-        markDoneButton.style.display = 'block';
     }
 
     // Update the display immediately
@@ -152,13 +146,8 @@ async function startIntervalTimer(prepTime, sets, activeTime, restTime, manualMo
     timerInterval = setInterval(() => {
         if (manualMode && phase === 'active') {
             markDoneButton.style.display = 'block'; // Show the button in manual mode
-            if (timeLeft > 0) {
-            // Wait for user to click "mark done"
             return;
-        }
-        // If timeLeft is 0 (user clicked button), advance phase
-        nextPhase();
-        } else if (timeLeft > 0) {
+        }else if (timeLeft > 0) {
             timeLeft--;
             updateTimerDisplay();
         } else {
