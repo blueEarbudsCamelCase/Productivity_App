@@ -9,7 +9,8 @@ const fitnessFocusElement = document.getElementById('currentFocus');
 const fitnessForm = document.getElementById('fitnessForm');
 const newFocusInput = document.getElementById('newFocus');
 const setFocusButton = document.getElementById('setFocus');
-
+const currentFocus = document.getElementById("currentFocus");
+const fitnessFormPopup = document.getElementById("fitnessFormPopup");
 //functions
 
 // Dynamic Greeting
@@ -98,29 +99,42 @@ function updateBookInLocalStorage(name, date, checked) {
     }
 }
 
-// Load the current fitness focus from localStorage on page load
-document.addEventListener('DOMContentLoaded', () => {
-    const savedFocus = localStorage.getItem('fitnessFocus') || 'None';
-    fitnessFocusElement.textContent = savedFocus;
-});
+  // Load saved focus
+  const savedFocus = localStorage.getItem("fitnessFocus");
+  if (savedFocus) {
+    currentFocus.textContent = savedFocus;
+  }
 
-// Set a new fitness focus
-setFocusButton.addEventListener('click', () => {
-    const newFocus = newFocusInput.value.trim();
-    console.log('New Focus:', newFocus); // Debugging: Log the input value
-    if (newFocus) {
-        fitnessFocusElement.textContent = newFocus;
-        localStorage.setItem('fitnessFocus', newFocus);
-        newFocusInput.value = '';
-    } else {
-        console.log('Error: No focus set');
+  // Show form when clicking on the focus text
+  currentFocus.parentElement.addEventListener("click", () => {
+    fitnessFormPopup.classList.remove("hidden");
+    newFocusInput.value = currentFocus.textContent !== "None" ? currentFocus.textContent : "";
+    newFocusInput.focus();
+  });
+
+  // Set new focus and hide form
+  setFocusBtn.addEventListener("click", () => {
+    const newFocus = newFocusInput.value.trim() || "None";
+    currentFocus.textContent = newFocus;
+    localStorage.setItem("fitnessFocus", newFocus);
+    fitnessFormPopup.classList.add("hidden");
+  });
+
+  // Optional: Hide form when clicking outside
+  document.addEventListener("click", (e) => {
+    if (
+      !fitnessFormPopup.contains(e.target) &&
+      !currentFocus.parentElement.contains(e.target)
+    ) {
+      fitnessFormPopup.classList.add("hidden");
     }
-});
+  });
 
-// Fitness Focus Notification 
+/* Fitness Focus Notification WORK ON THIS SOON WITH NOTIFICATION API
 const today = new Date();
-if (today.getDate() === 1) {
+if (today.getDate() === 16) {
     alert('Don’t forget to set your fitness focus for the month!');
 }
+    */
 
 
