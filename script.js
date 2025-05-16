@@ -119,7 +119,7 @@ ministryForm.addEventListener('click', (e) => {
 
 // Show the ministry form when clicking on the container
 
-ministryReading.addEventListener('click', () => {
+ministryFormPopup.addEventListener('click', () => {
     ministryForm.classList.remove('hidden');
     newBookInput.focus();
 });
