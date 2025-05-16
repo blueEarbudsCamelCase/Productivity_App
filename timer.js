@@ -67,7 +67,10 @@ backToHomeButton.addEventListener('click', () => {
     // Add event listener for the markDoneButton
     markDoneButton.addEventListener('click', () => {
         if (manualMode && phase === 'active') {
+            timeLeft = 0; // Mark the active phase as done
             nextPhase();
+            updateTimerDisplay();
+            markDoneButton.style.display = 'none'; // Hide the button after marking done
         }
     });
 
