@@ -39,38 +39,8 @@
         <input type="text" id="newFocus" placeholder="Set your fitness focus" />
         <button type="button" id="setFocus">Set Focus</button>
     </form>
-    <button id="openTimerScreen">Open Interval Timer</button>
 </div>
-
-</div>
-
-<div id="timerScreen" style="display: none;">
-        <form id="timerForm">
-            <h1>Interval Timer</h1>
-            <label for="prepTime">Preparation Time (seconds):</label>
-            <input type="number" id="prepTime" min="0" value="10">
-
-            <label for="sets">Number of Sets:</label>
-            <input type="number" id="sets" min="1" value="10">
-
-            <label for="activeTime">Active Time (seconds):</label>
-            <input type="number" id="activeTime" min="0" value="0">
-
-            <label for="restTime">Rest Time (seconds):</label>
-            <input type="number" id="restTime" min="0" value="60">
-
-            <button type="button" id="startTimer">Start Timer</button>
-        </form>
-
-        <div id="timerDisplay" style="display: none;">
-            <h2 id="timerPhase">Preparation</h2>
-            <p id="timerCountdown">0</p>
-            <button id="markDone">Mark Set Done</button>
-        </div>
-    <button id="backToHome">Back to Home</button>
-    </div>
-    <script src="timer.js" defer></script>
-    
+       
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
