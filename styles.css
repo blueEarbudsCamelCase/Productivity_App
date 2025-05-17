@@ -44,7 +44,7 @@ li{
     color: #49505f;
 }
 
-#sleepChart, #ministryReading, #productivityScore, #fitnessFocus {
+#morningTasks, #ministryReading, #productivityScore {
     text-align: center;
     color: #49505f;    
     display: block;
@@ -155,83 +155,21 @@ li{
     border-radius: 5px;
 }
 
-/* TIMER CSS */
-#timerScreen {
-    text-align: center;
-    padding: 20px;
+/* Checked state for book list items */
+#tasksList li.checked {
+    text-decoration: line-through;
+    color: #EE964B;
 }
 
-#timerForm {
-    text-align: center;
-    color: #49505f;    
-    display: block;
-    margin: 10px 1%;
-    padding: 10px;
-    background-color: #FDFAED;
-    border: 2px solid #F9F0C8;
-    border-radius: 10px;
-    flex: 1; /* Ensures both elements grow equally */
-    height: auto; /* Allows dynamic content to adjust */
-    display: flex;
-    flex-direction: column; /* Ensures content inside flows properly */
+#tasksList {
+    list-style: none;
+    padding: 0;
 }
 
-#timerForm label {
-    display: block;
-    margin: 10px 0 5px;
-}
-
-#timerForm input {
-    flex: 1;
-    font-family: 'Afacad';
-    color: #49505f;
+#tasksList li {
+    margin: 5px 0;
     padding: 5px;
+    background-color: #FBF5DA;
     border: 1px solid #F9F0C8;
-    border-radius: 5px;
-}
-
-#timerDisplay {
-    font-size: 2rem;
-    margin-top: 20px;
-}
-
-#startTimer {
-    padding: 5px 10px;
-    color: #49505f;
-    font-family: 'Afacad';
-    background-color: #F4D35E;
-    border: none;
-    border-radius: 5px;
-}
-
-/* Small button styling */
-#openTimerScreen {
-    padding: 5px 10px;
-    color: #49505f;
-    font-family: 'Afacad';
-    background-color: #F4D35E;
-    border: none;
-    border-radius: 5px;
-}
-
-#backToHome {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 5px 10px;
-    color: #49505f;
-    font-family: 'Afacad';
-    background-color: #F4D35E;
-    border: none;
-    border-radius: 5px;
-}
-
-#markDone {
-    padding: 5px 10px;
-    color: #49505f;
-    font-family: 'Afacad';
-    background-color: #F4D35E;
-    border: none;
     border-radius: 5px;
 }
