@@ -16,7 +16,23 @@
     <div id="homeScreen">
        <p id="greeting">Welcome!</p>
        <!--I want this to be a streak. Every day that you complete all of the morning tasks and don't have any books overdue, your streak stays intact. However, if the next day comes and you haven't completed any ministry books due today or com,pleted all of your morning tasks, you loose your curent streak. I'd like to have  afun little flame animation in this container too :)-->
-<div id="streak">Your Streak: <span id="streakNumber">0</span></div>
+<div id="streak"><span id="flame" aria-label="Streak Flame" role="img">
+    <!-- SVG flame icon -->
+    <svg width="40" height="40" viewBox="0 0 40 40">
+      <defs>
+        <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#f4d35e" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#f95738" stop-opacity="0.7"/>
+        </radialGradient>
+      </defs>
+      <path d="M20 5 C22 12, 30 15, 20 35 C10 15, 18 12, 20 5 Z"
+            fill="url(#flameGlow)" stroke="#ee964b" stroke-width="2"/>
+      <ellipse cx="20" cy="28" rx="5" ry="7" fill="#f4d35e" opacity="0.7"/>
+    </svg>
+  </span>
+  <span class="streak-label">Your Streak:</span>
+  <span id="streakNumber">0</span>
+</div>
         <!-- this section should have my morning tasks: get out of bed at 6am, Drink water, Exercise, and read ministry. once they are checked off, they should dissapear until midnight, when they should reappear for the new morning.  -->
 <div id="morningTasks">Morning Tasks:
     <ul id = "tasksList"></ul>

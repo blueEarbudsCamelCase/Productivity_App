@@ -204,13 +204,23 @@ function updateStreak() {
     const todayKey = getTodayKey();
     const lastChecked = localStorage.getItem('lastStreakChecked');
     let streak = Number(localStorage.getItem('streak')) || 0;
+    const streakNumberElem = document.getElementById('streakNumber');
+    let prevStreak = Number(streakNumberElem.textContent);
+
 
     if (lastChecked !== todayKey && areAllMorningTasksCompleted() && !areBooksOverdue()) {
         streak += 1;
         localStorage.setItem('lastStreakChecked', todayKey);
         localStorage.setItem('streak', streak);
     }
-    document.getElementById('streakNumber').textContent = streak;
+    streakNumberElem.textContent = streak;
+
+    // Animate if streak increased
+    if (streak > prevStreak) {
+        streakNumberElem.classList.remove('streak-pop');
+        void streakNumberElem.offsetWidth; // trigger reflow
+        streakNumberElem.classList.add('streak-pop');
+    }
 }
 
 // --- End Streak Logic ---
