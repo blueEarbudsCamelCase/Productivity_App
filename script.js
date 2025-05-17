@@ -72,9 +72,11 @@ function addBookToList(name, date, checked) {
                 if (bookList.querySelectorAll('li').length === 0) {
                     bookList.innerHTML = '<li class="all-done">All Done!</li>';
                 }
+                updateStreak();
             }, 250);
         } else {
             updateBookInLocalStorage(name, date, false);
+            updateStreak();
         }    
     });
 
@@ -173,13 +175,57 @@ ministryHeader.addEventListener('click', () => {
     }
   });
 
+// --- Streak Logic ---
+
+function getTodayKey() {
+    const today = new Date();
+    return today.toISOString().slice(0, 10); // YYYY-MM-DD
+}
+
+function areAllMorningTasksCompleted() {
+    const checkedTasks = JSON.parse(localStorage.getItem('morningTasksChecked')) || [];
+    return checkedTasks.length === morningTasks.length;
+}
+
+function areBooksOverdue() {
+    const books = JSON.parse(localStorage.getItem('ministryBooks')) || [];
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    return books.some(book => {
+        const addedDate = new Date(book.date);
+        const finishByDate = new Date(addedDate);
+        finishByDate.setDate(addedDate.getDate() + 5);
+        finishByDate.setHours(0,0,0,0);
+        return !book.checked && finishByDate <= today;
+    });
+}
+
+function updateStreak() {
+    const todayKey = getTodayKey();
+    const lastChecked = localStorage.getItem('lastStreakChecked');
+    let streak = Number(localStorage.getItem('streak')) || 0;
+
+    if (lastChecked !== todayKey) {
+        if (areAllMorningTasksCompleted() && !areBooksOverdue()) {
+            streak += 1;
+        } else {
+            streak = 0;
+        }
+        localStorage.setItem('lastStreakChecked', todayKey);
+        localStorage.setItem('streak', streak);
+    }
+    document.getElementById('streakNumber').textContent = streak;
+}
+
+// --- End Streak Logic ---
+
 // --- Morning Tasks Logic ---
 
 const morningTasks = [
-    "Get out of bed at 6am",
-    "Drink water",
-    "Exercise",
-    "Read ministry"
+  { id: 'wakeUp', label: 'Get out of bed at 6am' },
+  { id: 'drinkWater', label: 'Drink water' },
+  { id: 'exercise', label: 'Exercise' },
+  { id: 'readMinistry', label: 'Read ministry' }
 ];
 
 // Load checked state from localStorage
@@ -234,4 +280,5 @@ function scheduleMidnightReset() {
 document.addEventListener('DOMContentLoaded', () => {
     loadMorningTasks();
     scheduleMidnightReset();
+    updateStreak();
 });
