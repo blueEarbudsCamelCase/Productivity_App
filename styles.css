@@ -44,7 +44,7 @@ li{
     color: #49505f;
 }
 
-#morningTasks, #ministryReading, #productivityScore {
+#morningTasks, #ministryReading, #streak, #fitnessFocus {
     text-align: center;
     color: #49505f;    
     display: block;
