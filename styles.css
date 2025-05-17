@@ -194,20 +194,54 @@ li{
     align-items: center;
     justify-content: center;
     gap: 12px;
-    background: linear-gradient(90deg, #f4d35e 0%, #fdfaed 100%);
-    border: 2px solid #f9f0c8;
-    border-radius: 16px;
-    box-shadow: 0 2px 12px 0 #f4d35e33;
     font-size: 1.3em;
     margin: 20px auto;
     padding: 16px 24px;
     max-width: 350px;
     position: relative;
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 16px;
+    transition: background 0.3s, box-shadow 0.3s, border 0.3s;
 }
 
-#flame {
-    display: flex;
-    align-items: center;
+#streak .streak-label,
+#streak #streakNumber {
+    color: #49505f;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+#streak #flame {
+    opacity: 0.5;
+    filter: grayscale(1);
+    animation: none;
+}
+
+#streak.active-streak {
+    background: linear-gradient(90deg, #f4d35e 0%, #fdfaed 100%);
+    border: 2px solid #f9f0c8;
+    box-shadow: 0 2px 12px 0 #f4d35e33;
+}
+
+#streak.active-streak .streak-label {
+    color: #49505f;
+    font-weight: bold;
+}
+
+#streak.active-streak #streakNumber {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #f95738;
+    margin-left: 8px;
+    text-shadow: 0 0 8px #f4d35e99;
+    transition: transform 0.2s;
+}
+
+#streak.active-streak #flame {
+    opacity: 1;
+    filter: none;
     animation: flame-bounce 1.2s infinite alternate;
 }
 
@@ -217,22 +251,6 @@ li{
     100% { transform: translateY(0) scale(1);}
 }
 
-#streakNumber {
-    font-size: 2.2em;
-    font-weight: bold;
-    color: #f95738;
-    margin-left: 8px;
-    text-shadow: 0 0 8px #f4d35e99;
-    transition: transform 0.2s;
-}
-
-.streak-label {
-    font-size: 1.1em;
-    color: #49505f;
-    margin-left: 6px;
-}
-
-/* Optional: Animate streak number when it changes */
 .streak-pop {
     animation: streak-pop 0.4s;
 }

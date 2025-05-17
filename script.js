@@ -221,6 +221,14 @@ function updateStreak() {
         void streakNumberElem.offsetWidth; // trigger reflow
         streakNumberElem.classList.add('streak-pop');
     }
+
+    // Toggle streak container style
+    const streakContainer = document.getElementById('streak');
+    if (streak > 0) {
+        streakContainer.classList.add('active-streak');
+    } else {
+        streakContainer.classList.remove('active-streak');
+    }
 }
 
 // --- End Streak Logic ---
@@ -287,7 +295,14 @@ function scheduleMidnightReset() {
         }
         localStorage.removeItem('morningTasksChecked');
         loadMorningTasks();
-        document.getElementById('streakNumber').textContext = localStorage.getItem('streak') || 0;
+        const streak = Number(localStorage.getItem('streak')) || 0;
+        document.getElementById('streakNumber').textContent = streak;
+        const streakContainer = document.getElementById('streak');
+        if (streak > 0) {
+            streakContainer.classList.add('active-streak');
+        } else {
+            streakContainer.classList.remove('active-streak');
+        }
         scheduleMidnightReset();
     }, msUntilMidnight);
 }
@@ -296,4 +311,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loadMorningTasks();
     scheduleMidnightReset();
     document.getElementById('streakNumber').textContent = localStorage.getItem('streak') || 0;
+        // Toggle streak container style on load
+    const streak = Number(localStorage.getItem('streak')) || 0;
+    const streakContainer = document.getElementById('streak');
+    if (streak > 0) {
+        streakContainer.classList.add('active-streak');
+    } else {
+        streakContainer.classList.remove('active-streak');
+    }
 });
