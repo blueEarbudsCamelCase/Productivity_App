@@ -205,12 +205,8 @@ function updateStreak() {
     const lastChecked = localStorage.getItem('lastStreakChecked');
     let streak = Number(localStorage.getItem('streak')) || 0;
 
-    if (lastChecked !== todayKey) {
-        if (areAllMorningTasksCompleted() && !areBooksOverdue()) {
-            streak += 1;
-        } else {
-            streak = 0;
-        }
+    if (lastChecked !== todayKey && areAllMorningTasksCompleted() && !areBooksOverdue()) {
+        streak += 1;
         localStorage.setItem('lastStreakChecked', todayKey);
         localStorage.setItem('streak', streak);
     }
@@ -273,9 +269,15 @@ function scheduleMidnightReset() {
     const now = new Date();
     const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0) - now;
     setTimeout(() => {
+        // If yesterday wasn't completed, reset streak
+        const todayKey = getTodayKey();
+        const lastChecked = localStorage.getItem('lastStreakChecked');
+        if (lastChecked !== todayKey) {
+            localStorage.setItem('streak', 0);
+        }
         localStorage.removeItem('morningTasksChecked');
         loadMorningTasks();
-        updateStreak();
+        document.getElementById('streakNumber').textContext = localStorage.getItem('streak') || 0;
         scheduleMidnightReset();
     }, msUntilMidnight);
 }
@@ -283,5 +285,5 @@ function scheduleMidnightReset() {
 document.addEventListener('DOMContentLoaded', () => {
     loadMorningTasks();
     scheduleMidnightReset();
-    updateStreak();
+    document.getElementById('streakNumber').textContent = localStorage.getItem('streak') || 0;
 });
