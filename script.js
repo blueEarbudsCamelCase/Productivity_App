@@ -112,10 +112,6 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Prevent click inside the form from bubbling up and closing it
-ministryForm.addEventListener('click', (e) => {
-    e.stopPropagation();
-});
 
 // Show the ministry form when clicking on the container
 
@@ -155,11 +151,54 @@ ministryReading.addEventListener('click', () => {
     }
   });
 
-/* Fitness Focus Notification WORK ON THIS SOON WITH NOTIFICATION API
-const today = new Date();
-if (today.getDate() === 16) {
-    alert('Don’t forget to set your fitness focus for the month!');
+// --- Morning Tasks Logic ---
+
+const morningTasks = [
+    "Get out of bed at 6am",
+    "Drink water",
+    "Exercise",
+    "Read ministry"
+];
+
+// Load checked state from localStorage
+function loadMorningTasks() {
+    const checkedTasks = JSON.parse(localStorage.getItem('morningTasksChecked')) || [];
+    const tasksList = document.getElementById('tasksList');
+    tasksList.innerHTML = '';
+    morningTasks.forEach((task, idx) => {
+        const li = document.createElement('li');
+        li.textContent = task;
+        if (checkedTasks.includes(idx)) li.classList.add('checked');
+        li.addEventListener('click', () => {
+            li.classList.toggle('checked');
+            let checked = JSON.parse(localStorage.getItem('morningTasksChecked')) || [];
+            if (li.classList.contains('checked')) {
+                li.classList.add('fade-out');
+                checked.push(idx);
+                localStorage.setItem('morningTasksChecked', JSON.stringify([...new Set(checked)]));
+                setTimeout(() => li.remove(), 250);
+            } else {
+                checked = checked.filter(i => i !== idx);
+                localStorage.setItem('morningTasksChecked', JSON.stringify(checked));
+            }
+        });
+        // Only show if not checked
+        if (!checkedTasks.includes(idx)) tasksList.appendChild(li);
+    });
 }
-    */
 
+// Reset tasks at midnight
+function scheduleMidnightReset() {
+    const now = new Date();
+    const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0) - now;
+    setTimeout(() => {
+        localStorage.removeItem('morningTasksChecked');
+        loadMorningTasks();
+        scheduleMidnightReset();
+    }, msUntilMidnight);
+}
 
+document.addEventListener('DOMContentLoaded', () => {
+    loadMorningTasks();
+    scheduleMidnightReset();
+});
