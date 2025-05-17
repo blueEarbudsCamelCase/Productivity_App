@@ -238,7 +238,7 @@ function loadMorningTasks() {
         if (!checkedTasks.includes(idx)) {
             hasTasks = true;
             const li = document.createElement('li');
-            li.textContent = task;
+            li.textContent = task.label;
             li.addEventListener('click', () => {
                 li.classList.toggle('checked');
                 let checked = JSON.parse(localStorage.getItem('morningTasksChecked')) || [];
@@ -252,10 +252,12 @@ function loadMorningTasks() {
                         if (tasksList.querySelectorAll('li').length === 0) {
                             tasksList.innerHTML = '<li class="all-done">All Done!</li>';
                         }
+                        updateStreak();
                     }, 250);
                 } else {
                     checked = checked.filter(i => i !== idx);
                     localStorage.setItem('morningTasksChecked', JSON.stringify(checked));
+                    updateStreak();
                 }
             });
             tasksList.appendChild(li);
@@ -273,6 +275,7 @@ function scheduleMidnightReset() {
     setTimeout(() => {
         localStorage.removeItem('morningTasksChecked');
         loadMorningTasks();
+        updateStreak();
         scheduleMidnightReset();
     }, msUntilMidnight);
 }
