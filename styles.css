@@ -173,3 +173,13 @@ li{
     border: 1px solid #F9F0C8;
     border-radius: 5px;
 }
+
+.all-done {
+    text-align: center;
+    color: #49505f;
+    font-family: 'Afacad';
+    font-weight: bold;
+    background: none;
+    border: none;
+    margin: 10px 0;
+}

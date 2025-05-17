@@ -64,14 +64,32 @@ function addBookToList(name, date, checked) {
             setTimeout(() => {
                 listItem.remove();
                 removeBookFromLocalStorage(name, date);
-            }, 500); // Match the duration of the fade-out animation
+           // Show "All Done!" if no books left
+                if (bookList.querySelectorAll('li').length === 0) {
+                    bookList.innerHTML = '<li class="all-done">All Done!</li>';
+                }
+            }, 250);
         } else {
             updateBookInLocalStorage(name, date, false);
         }    
     });
 
+// Remove "All Done!" if present
+    if (bookList.querySelector('.all-done')) {
+        bookList.innerHTML = '';
+    }
     bookList.appendChild(listItem);
 }
+
+// Also, after loading books on page load:
+document.addEventListener('DOMContentLoaded', () => {
+    const savedBooks = JSON.parse(localStorage.getItem('ministryBooks')) || [];
+    if (savedBooks.length === 0) {
+        bookList.innerHTML = '<li class="all-done">All Done!</li>';
+    } else {
+        savedBooks.forEach(book => addBookToList(book.name, book.date, book.checked));
+    }
+});
 
 // Remove a book from localStorage
 function removeBookFromLocalStorage(name, date) {
@@ -165,26 +183,37 @@ function loadMorningTasks() {
     const checkedTasks = JSON.parse(localStorage.getItem('morningTasksChecked')) || [];
     const tasksList = document.getElementById('tasksList');
     tasksList.innerHTML = '';
+    let hasTasks = false;
     morningTasks.forEach((task, idx) => {
-        const li = document.createElement('li');
-        li.textContent = task;
-        if (checkedTasks.includes(idx)) li.classList.add('checked');
-        li.addEventListener('click', () => {
-            li.classList.toggle('checked');
-            let checked = JSON.parse(localStorage.getItem('morningTasksChecked')) || [];
-            if (li.classList.contains('checked')) {
-                li.classList.add('fade-out');
-                checked.push(idx);
-                localStorage.setItem('morningTasksChecked', JSON.stringify([...new Set(checked)]));
-                setTimeout(() => li.remove(), 250);
-            } else {
-                checked = checked.filter(i => i !== idx);
-                localStorage.setItem('morningTasksChecked', JSON.stringify(checked));
-            }
-        });
-        // Only show if not checked
-        if (!checkedTasks.includes(idx)) tasksList.appendChild(li);
+        if (!checkedTasks.includes(idx)) {
+            hasTasks = true;
+            const li = document.createElement('li');
+            li.textContent = task;
+            li.addEventListener('click', () => {
+                li.classList.toggle('checked');
+                let checked = JSON.parse(localStorage.getItem('morningTasksChecked')) || [];
+                if (li.classList.contains('checked')) {
+                    li.classList.add('fade-out');
+                    checked.push(idx);
+                    localStorage.setItem('morningTasksChecked', JSON.stringify([...new Set(checked)]));
+                    setTimeout(() => {
+                        li.remove();
+                        // Show "All Done!" if no tasks left
+                        if (tasksList.querySelectorAll('li').length === 0) {
+                            tasksList.innerHTML = '<li class="all-done">All Done!</li>';
+                        }
+                    }, 250);
+                } else {
+                    checked = checked.filter(i => i !== idx);
+                    localStorage.setItem('morningTasksChecked', JSON.stringify(checked));
+                }
+            });
+            tasksList.appendChild(li);
+        }
     });
+    if (!hasTasks) {
+        tasksList.innerHTML = '<li class="all-done">All Done!</li>';
+    }
 }
 
 // Reset tasks at midnight
