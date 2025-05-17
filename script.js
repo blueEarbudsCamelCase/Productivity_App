@@ -123,10 +123,10 @@ function updateBookInLocalStorage(name, date, checked) {
 // Hide the ministry form when clicking outside of it and its container
 document.addEventListener('click', (e) => {
     if (
-        !ministryForm.contains(e.target) &&
+        !ministryFormPopup.contains(e.target) &&
         !ministryReading.contains(e.target)
     ) {
-        ministryForm.classList.add('hidden');
+        ministryFormPopup.classList.add('hidden');
     }
 });
 

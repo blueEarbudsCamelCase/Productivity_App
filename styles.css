@@ -178,8 +178,7 @@ li{
     text-align: center;
     color: #49505f;
     font-family: 'Afacad';
-    font-weight: bold;
-    background: none;
+    background-color: #FDFAED;
     border: none;
     margin: 10px 0;
 }
