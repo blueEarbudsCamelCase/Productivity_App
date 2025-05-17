@@ -179,7 +179,7 @@ li{
     color: #49505f;
     font-family: 'Afacad';
     background-color: #FDFAED !important;
-    border: none;
+    border: none !important;
     margin: 10px 0;
 }
 
