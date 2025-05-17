@@ -4,10 +4,10 @@ const homeScreen = document.getElementById('homeScreen');
 const ministryReading = document.getElementById('ministryReading');
 const ministryForm = document.getElementById('ministryForm');
 const ministryFormPopup = document.getElementById('ministryFormPopup');
+const ministryHeader = document.getElementById('ministryHeader');
 const newBookInput = document.getElementById('newBook');
 const bookList = document.getElementById('bookList');
 const addBook = document.getElementById('addBook');
-const fitnessFocusElement = document.getElementById('currentFocus');
 const fitnessForm = document.getElementById('fitnessForm');
 const newFocusInput = document.getElementById('newFocus');
 const setFocusButton = document.getElementById('setFocus');
@@ -133,7 +133,7 @@ document.addEventListener('click', (e) => {
 
 // Show the ministry form when clicking on the container
 
-ministryReading.addEventListener('click', () => {
+ministryHeader.addEventListener('click', () => {
     ministryFormPopup.classList.remove('hidden');
     newBookInput.focus();
 });
