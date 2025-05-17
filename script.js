@@ -25,12 +25,6 @@ if (currentHour < 12) {
     greeting.textContent = 'Were you productive today?';
 }
 
-// Load books from localStorage on page load
-document.addEventListener('DOMContentLoaded', () => {
-    const savedBooks = JSON.parse(localStorage.getItem('ministryBooks')) || [];
-    savedBooks.forEach(book => addBookToList(book.name, book.date, book.checked));
-});
-
 // Add a new book
 addBook.addEventListener('click', () => {
     const bookName = newBookInput.value.trim();
