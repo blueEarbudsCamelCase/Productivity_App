@@ -178,7 +178,7 @@ li{
     text-align: center;
     color: #49505f;
     font-family: 'Afacad';
-    background-color: #FDFAED;
+    background-color: #FDFAED !important;
     border: none;
     margin: 10px 0;
 }
