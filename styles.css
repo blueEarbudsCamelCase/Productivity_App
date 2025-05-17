@@ -182,3 +182,8 @@ li{
     border: none;
     margin: 10px 0;
 }
+
+.overdue {
+    color: #f95738 !important; /* Bright red from your palette */
+    font-weight: bold;
+}

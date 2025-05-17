@@ -48,6 +48,16 @@ function addBookToList(name, date, checked) {
     listItem.textContent = `${name} (Finish by ${finishByDateString})`;
     if (checked) listItem.classList.add('checked');
 
+        // --- Highlight overdue books ---
+    const today = new Date();
+    // Remove time for accurate date-only comparison
+    today.setHours(0,0,0,0);
+    finishByDate.setHours(0,0,0,0);
+    if (finishByDate <= today && !checked) {
+        listItem.classList.add('overdue');
+    }
+    // --- End highlight ---
+
     // Toggle "checked" state and update localStorage
     listItem.addEventListener('click', () => {
         listItem.classList.toggle('checked');
