@@ -217,10 +217,14 @@ li{
 
 #streak.active-streak #streakNumber {
     font-family: 'Afacad';
-    font-size: 2em;
     color: #f29340;
     margin: 0 8px;
-    text-shadow: 5px #fff;
+    text-shadow:
+        -1px -1px 0 #fff,
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+         1px  1px 0 #fff,
+         0px  2px 4px #fff;
     transition: transform 0.2s;
 }
 
