@@ -183,9 +183,10 @@ li{
     background-color: #FDFAED;
     border: 2px solid #F9F0C8;
     border-radius: 10px;
+    gap: 8px;
     height: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     position: relative;
