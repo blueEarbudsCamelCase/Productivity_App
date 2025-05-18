@@ -308,6 +308,13 @@ function scheduleMidnightReset() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const todayKey = getTodayKey();
+    const lastChecked = localStorage.getItem('lastStreakChecked');
+    if (lastChecked !== todayKey) {
+        localStorage.removeItem('morningTasksChecked');
+        // Optionally reset streak if you want to enforce streak loss on missed days:
+        localStorage.setItem('streak', 0);
+    }
     loadMorningTasks();
     scheduleMidnightReset();
     document.getElementById('streakNumber').textContent = localStorage.getItem('streak') || 0;
