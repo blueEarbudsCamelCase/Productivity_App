@@ -55,8 +55,6 @@ li{
     border-radius: 10px;
     flex: 1; /* Ensures both elements grow equally */
     height: auto; /* Allows dynamic content to adjust */
-    display: flex;
-    flex-direction: column; /* Ensures content inside flows properly */
 }
 
 #ministryForm {
@@ -115,15 +113,6 @@ li{
 }
 
 /* Fitness Focus Section */
-#fitnessFocus {
-    color: #49505f;
-    text-align: center;
-    margin: 20px 0;
-    padding: 10px;
-    background-color: #FDFAED;
-    border: 2px solid #F9F0C8;
-    border-radius: 10px;
-}
 
 #fitnessForm {
     display: flex;
@@ -201,7 +190,6 @@ li{
     flex: 1;
     height: auto;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 8px;
@@ -224,7 +212,7 @@ li{
 
 /* Active streak: colorful, animated, and more prominent */
 #streak.active-streak {
-    background: linear-gradient(90deg, #f4d35e 0%, #fdfaed 100%);
+    background: #F4D35E;
     border: 2px solid #f9f0c8;
     box-shadow: 0 2px 12px 0 #f4d35e33;
 }
