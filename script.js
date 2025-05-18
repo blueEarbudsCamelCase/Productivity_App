@@ -290,7 +290,8 @@ function scheduleMidnightReset() {
         // If yesterday wasn't completed, reset streak
         const todayKey = getTodayKey();
         const lastChecked = localStorage.getItem('lastStreakChecked');
-        if (lastChecked !== todayKey) {
+        // Only reset streak if yesterday wasn't completed
+        if (lastChecked !== todayKey && (!areAllMorningTasksCompleted() || areBooksOverdue())) {
             localStorage.setItem('streak', 0);
         }
         localStorage.removeItem('morningTasksChecked');
@@ -312,8 +313,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const lastChecked = localStorage.getItem('lastStreakChecked');
     if (lastChecked !== todayKey) {
         localStorage.removeItem('morningTasksChecked');
-        // Optionally reset streak if you want to enforce streak loss on missed days:
-        localStorage.setItem('streak', 0);
+        // Only reset streak if yesterday wasn't completed
+        if (!areAllMorningTasksCompleted() || areBooksOverdue()) {
+            localStorage.setItem('streak', 0);
+        }
     }
     loadMorningTasks();
     scheduleMidnightReset();
