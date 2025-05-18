@@ -183,7 +183,7 @@ li{
     background-color: #FDFAED;
     border: 2px solid #F9F0C8;
     border-radius: 10px;
-    gap: 8px;
+    gap: 5px;
     height: auto;
     display: flex;
     flex-direction: row;
@@ -223,6 +223,7 @@ li{
 }
 
 #flame svg {
-    width: 38px;
+    width: 37.5px;
     height: 40px;
+    display:block;
 }
