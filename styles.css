@@ -53,7 +53,6 @@ li{
     background-color: #FDFAED;
     border: 2px solid #F9F0C8;
     border-radius: 10px;
-    flex: 1; /* Ensures both elements grow equally */
     height: auto; /* Allows dynamic content to adjust */
 }
 
@@ -177,25 +176,18 @@ li{
     font-weight: bold;
 }
 
-
-
 #streak {
     text-align: center;
-    color: #49505f;
-    margin: 10px 1%;
     padding: 10px;
     background-color: #FDFAED;
     border: 2px solid #F9F0C8;
     border-radius: 10px;
-    flex: 1;
     height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    max-width: 350px;
     position: relative;
-    box-shadow: none;
     transition: background 0.3s, box-shadow 0.3s, border 0.3s;
 }
 
