@@ -214,12 +214,16 @@ li{
     font-weight: bold;
 }
 
-#streak.active-streak #streakNumber {
+#streak #streakNumber {
     font-size: 2.2em;
     font-weight: bold;
-    color: #f95738;
-    margin-left: 8px;
-    text-shadow: 0 0 8px #f4d35e99;
+    color: #f29340;
+    margin: 0 8px;
+    text-shadow:
+        0 0 2px #fff,
+        0 0 4px #fff,
+        0 0 6px #fff,
+        0 0 8px #fff;
     transition: transform 0.2s;
 }
 
