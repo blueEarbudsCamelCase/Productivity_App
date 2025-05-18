@@ -181,6 +181,17 @@ function getTodayKey() {
     const today = new Date();
     return today.toISOString().slice(0, 10); // YYYY-MM-DD
 }
+// Modified: Store the date when morning tasks were last checked
+function resetMorningTasksIfNewDay() {
+    const todayKey = getTodayKey();
+    const lastTasksDate = localStorage.getItem('morningTasksDate');
+    if (lastTasksDate !== todayKey) {
+        localStorage.removeItem('morningTasksChecked');
+        localStorage.setItem('morningTasksDate', todayKey);
+    }
+}
+
+
 
 function areAllMorningTasksCompleted() {
     const checkedTasks = JSON.parse(localStorage.getItem('morningTasksChecked')) || [];
@@ -294,7 +305,7 @@ function scheduleMidnightReset() {
         if (lastChecked !== todayKey && (!areAllMorningTasksCompleted() || areBooksOverdue())) {
             localStorage.setItem('streak', 0);
         }
-        localStorage.removeItem('morningTasksChecked');
+        resetMorningTasksIfNewDay();
         loadMorningTasks();
         const streak = Number(localStorage.getItem('streak')) || 0;
         document.getElementById('streakNumber').textContent = streak;
@@ -309,15 +320,7 @@ function scheduleMidnightReset() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const todayKey = getTodayKey();
-    const lastChecked = localStorage.getItem('lastStreakChecked');
-    if (lastChecked !== todayKey) {
-        localStorage.removeItem('morningTasksChecked');
-        // Only reset streak if yesterday wasn't completed
-        if (!areAllMorningTasksCompleted() || areBooksOverdue()) {
-            localStorage.setItem('streak', 0);
-        }
-    }
+    resetMorningTasksIfNewDay();
     loadMorningTasks();
     scheduleMidnightReset();
     document.getElementById('streakNumber').textContent = localStorage.getItem('streak') || 0;

@@ -204,7 +204,7 @@ li{
 
 /* Active streak: colorful, animated, and more prominent */
 #streak.active-streak {
-    background: #F4C357;
+    background: #F3B34F;
     border: 2px solid #f9f0c8;
     box-shadow: 0 2px 12px 0 #f4d35e33;
 }
