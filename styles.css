@@ -178,6 +178,7 @@ li{
 
 #streak {
     text-align: center;
+    color: #fff;
     padding: 10px;
     background-color: #FDFAED;
     border: 2px solid #F9F0C8;
@@ -215,15 +216,11 @@ li{
 }
 
 #streak.active-streak #streakNumber {
-    font-size: 2.2em;
-    font-weight: bold;
+    font-family: 'Afacad';
+    font-size: 2em;
     color: #f29340;
     margin: 0 8px;
-    border:
-        0 0 2px #fff,
-        0 0 4px #fff,
-        0 0 6px #fff,
-        0 0 8px #fff;
+    text-shadow: 5px #fff,
     transition: transform 0.2s;
 }
 
