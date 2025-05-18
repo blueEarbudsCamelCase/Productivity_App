@@ -204,7 +204,7 @@ li{
 
 /* Active streak: colorful, animated, and more prominent */
 #streak.active-streak {
-    background: #F4D35E;
+    background: #f29340;
     border: 2px solid #f9f0c8;
     box-shadow: 0 2px 12px 0 #f4d35e33;
 }
@@ -214,12 +214,12 @@ li{
     font-weight: bold;
 }
 
-#streak #streakNumber {
+#streak.active-streak #streakNumber {
     font-size: 2.2em;
     font-weight: bold;
     color: #f29340;
     margin: 0 8px;
-    text-shadow:
+    border:
         0 0 2px #fff,
         0 0 4px #fff,
         0 0 6px #fff,
@@ -231,20 +231,5 @@ li{
     display: flex;
     opacity: 1;
     filter: none;
-    animation: flame-bounce 1.2s infinite alternate;
 }
 
-@keyframes flame-bounce {
-    0% { transform: translateY(0) scale(1);}
-    60% { transform: translateY(-4px) scale(1.07);}
-    100% { transform: translateY(0) scale(1);}
-}
-
-.streak-pop {
-    animation: streak-pop 0.4s;
-}
-@keyframes streak-pop {
-    0% { transform: scale(1);}
-    50% { transform: scale(1.3);}
-    100% { transform: scale(1);}
-}
