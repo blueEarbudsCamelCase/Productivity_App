@@ -193,7 +193,18 @@ function resetMorningTasksIfNewDay() {
     }
 }
 
-
+function checkAndResetStreakOnLoad() {
+    const todayKey = getTodayKey();
+    const lastChecked = localStorage.getItem('lastStreakChecked');
+    const lastTasksDate = localStorage.getItem('morningTasksDate');
+    // If the last streak check or morning tasks date is not today, and yesterday wasn't completed, reset streak
+    if (lastChecked !== todayKey && lastTasksDate !== todayKey) {
+        if (!areAllMorningTasksCompleted() || areBooksOverdue()) {
+            localStorage.setItem('streak', 0);
+        }
+        resetMorningTasksIfNewDay();
+    }
+}
 
 function areAllMorningTasksCompleted() {
     const checkedTasks = JSON.parse(localStorage.getItem('morningTasksChecked')) || [];
@@ -322,6 +333,7 @@ function scheduleMidnightReset() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    checkAndResetStreakOnLoad();
     resetMorningTasksIfNewDay();
     loadMorningTasks();
     scheduleMidnightReset();
