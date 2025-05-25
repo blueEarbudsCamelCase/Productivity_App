@@ -1,13 +1,13 @@
 const CACHE_NAME = "productivity-app-cache-v1";
 const urlsToCache = [
   "/",
-  "/index.html",
-  "/styles.css",
-  "/script.js",
-  "/manifest.json",
-  "/icon-192.png",
-  "/icon-512.png", 
-  "/beep-329314.mp3"
+  "Productivity_App/index.html",
+  "Productivity_App/styles.css",
+  "Productivity_App/script.js",
+  "Productivity_App/manifest.json",
+  "Productivity_App/icon-192.png",
+  "Productivity_App/icon-512.png", 
+  "Productivity_App/beep-329314.mp3"
 ];
 
 self.addEventListener("install", (event) => {
