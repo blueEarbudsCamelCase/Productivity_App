@@ -264,6 +264,7 @@ const morningTasks = [
   { id: 'drinkWater', label: 'Drink water' },
   { id: 'exercise', label: 'Exercise' },
   { id: 'readMinistry', label: 'Read ministry' }
+  { id: 'bibleReading', label: 'Read the Bible'}
 ];
 
 // Load checked state from localStorage
