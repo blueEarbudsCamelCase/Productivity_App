@@ -263,7 +263,8 @@ const morningTasks = [
   { id: 'wakeUp', label: 'Get out of bed at 6am' },
   { id: 'drinkWater', label: 'Drink water' },
   { id: 'exercise', label: 'Exercise' },
-  { id: 'readMinistry', label: 'Read ministry' }
+  { id: 'readMinistry', label: 'Read ministry' },
+  { id: 'bibleReading', label: 'Read the Bible' }
 ];
 
 // Load checked state from localStorage
