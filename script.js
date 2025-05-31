@@ -334,9 +334,9 @@ function scheduleMidnightReset() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    checkAndResetStreakOnLoad();
     resetMorningTasksIfNewDay();
     loadMorningTasks();
+    checkAndResetStreakOnLoad();
     scheduleMidnightReset();
     document.getElementById('streakNumber').textContent = localStorage.getItem('streak') || 0;
         // Toggle streak container style on load
