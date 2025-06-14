@@ -338,6 +338,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loadMorningTasks();
     checkAndResetStreakOnLoad();
     scheduleMidnightReset();
+
+document.getElementById('resetTasksBtn').addEventListener('click', () => {
+    localStorage.removeItem('morningTasksChecked');
+    localStorage.setItem('morningTasksDate', getTodayKey());
+    loadMorningTasks();
+});
     document.getElementById('streakNumber').textContent = localStorage.getItem('streak') || 0;
         // Toggle streak container style on load
     const streak = Number(localStorage.getItem('streak')) || 0;
