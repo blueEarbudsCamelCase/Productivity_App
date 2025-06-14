@@ -1,5 +1,3 @@
-
-
 //all the getelementbyid's
 const greeting = document.getElementById('greeting');
 const homeScreen = document.getElementById('homeScreen');
@@ -184,15 +182,16 @@ function getTodayKey() {
     return today.toISOString().slice(0, 10); // YYYY-MM-DD
 }
 // Modified: Store the date when morning tasks were last checked
+
 function resetMorningTasksIfNewDay() {
     const todayKey = getTodayKey();
     const lastTasksDate = localStorage.getItem('morningTasksDate');
     if (lastTasksDate !== todayKey) {
         localStorage.removeItem('morningTasksChecked');
         localStorage.setItem('morningTasksDate', todayKey);
+        loadMorningTasks();
     }
 }
-
 function checkAndResetStreakOnLoad() {
     const todayKey = getTodayKey();
     const lastChecked = localStorage.getItem('lastStreakChecked');
