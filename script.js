@@ -260,7 +260,7 @@ function updateStreak() {
 // --- Morning Tasks Logic ---
 
 const morningTasks = [
-  { id: 'wakeUp', label: 'Get out of bed at 6am' },
+  { id: 'wakeUp', label: 'Get out of bed before 7:30 am' },
   { id: 'drinkWater', label: 'Drink water' },
   { id: 'exercise', label: 'Exercise' },
   { id: 'readMinistry', label: 'Read ministry' },
