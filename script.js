@@ -333,12 +333,13 @@ function scheduleMidnightReset() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    resetMorningTasksIfNewDay();
+    /*resetMorningTasksIfNewDay();
     loadMorningTasks();
     checkAndResetStreakOnLoad();
-    scheduleMidnightReset();
+    scheduleMidnightReset(); */
+// commeneted out because of inconsistent behaviour. button below is a replacement. 
 
-document.getElementById('resetTasksBtn').addEventListener('click', () => {
+document.getElementById('morningTasks').addEventListener('click', () => {
     localStorage.removeItem('morningTasksChecked');
     localStorage.setItem('morningTasksDate', getTodayKey());
     loadMorningTasks();
