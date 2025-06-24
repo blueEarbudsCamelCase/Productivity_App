@@ -13,6 +13,7 @@ const newFocusInput = document.getElementById('newFocus');
 const setFocusButton = document.getElementById('setFocus');
 const currentFocus = document.getElementById("currentFocus");
 const fitnessFormPopup = document.getElementById("fitnessFormPopup");
+
 //functions
 
 // Dynamic Greeting
@@ -339,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scheduleMidnightReset(); */
 // commeneted out because of inconsistent behaviour. button below is a replacement. 
 
-document.getElementById('morningTasks').addEventListener('click', () => {
+document.getElementById('resetText').addEventListener('click', () => {
     localStorage.removeItem('morningTasksChecked');
     localStorage.setItem('morningTasksDate', getTodayKey());
     loadMorningTasks();
