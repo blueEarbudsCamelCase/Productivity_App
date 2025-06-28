@@ -42,7 +42,7 @@ addBook.addEventListener('click', () => {
 function addBookToList(name, date, checked) {
     const addedDate = new Date(date);
     const finishByDate = new Date(addedDate);
-    finishByDate.setDate(addedDate.getDate() + 5);
+    finishByDate.setDate(addedDate.getDate() + 7);
     const finishByDateString = finishByDate.toLocaleDateString();
 
     const listItem = document.createElement('li');
