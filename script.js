@@ -334,11 +334,10 @@ function scheduleMidnightReset() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    /*resetMorningTasksIfNewDay();
+    /*resetMorningTasksIfNewDay();*/
     loadMorningTasks();
     checkAndResetStreakOnLoad();
-    scheduleMidnightReset(); */
-// commeneted out because of inconsistent behaviour. button below is a replacement. 
+    scheduleMidnightReset();
 
 document.getElementById('resetText').addEventListener('click', () => {
     localStorage.removeItem('morningTasksChecked');
@@ -364,48 +363,4 @@ if ('serviceWorker' in navigator) {
     .catch(err => {
       console.error('Service Worker registration failed:', err);
     });
-}
-
-// Request notification permission and subscribe to push
-if ('serviceWorker' in navigator && 'PushManager' in window) {
-  navigator.serviceWorker.ready.then(async function(registration) {
-    // Request permission
-    const permission = await Notification.requestPermission();
-    if (permission !== 'granted') {
-      console.log('Notification permission denied');
-      return;
-    }
-
-    // Subscribe to push
-    const subscribeOptions = {
-      userVisibleOnly: true,
-      // Replace with your own VAPID public key (Base64 URL-encoded)
-      applicationServerKey: urlBase64ToUint8Array('BBH5938c6QK4fyh3hLgv49I_bcHuVwF0_Ktkg_Z2A1jCjmp0Z94t3JkJp2xx-SrwIRJ4s6cvGLRs6nrvBqWQkNg')
-    };
-
-    try {
-      const subscription = await registration.pushManager.subscribe(subscribeOptions);
-      console.log('Push subscription:', JSON.stringify(subscription));
-      // After successful subscription
-        await fetch('/save-subscription', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(subscription)
-});
-    } catch (err) {
-      console.error('Push subscription failed:', err);
-    }
-  });
-}
-
-// Helper to convert VAPID key
-function urlBase64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
 }
