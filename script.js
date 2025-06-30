@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /*resetMorningTasksIfNewDay();*/
     loadMorningTasks();
     checkAndResetStreakOnLoad();
-    scheduleMidnightReset();
+    /*scheduleMidnightReset();*/
 
 document.getElementById('resetText').addEventListener('click', () => {
     localStorage.removeItem('morningTasksChecked');
